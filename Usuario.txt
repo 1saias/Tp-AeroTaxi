@@ -1,0 +1,2 @@
+
+Usuario{nombre='robert', apellido='rano', dni=4541, edad=23}
