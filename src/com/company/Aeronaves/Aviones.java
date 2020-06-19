@@ -1,11 +1,13 @@
 package com.company.Aeronaves;
 
+import com.company.Motor;
+
 public abstract class Aviones {
     private float capCombustible;
     private float costoXKM;
     private int capMXPasajeros;
     private double velMX;          //En km/h
-    private String motor;
+    private Motor motor;
 
     public void setCapCombustible(float capCombustible) {
         this.capCombustible = capCombustible;
@@ -35,14 +37,15 @@ public abstract class Aviones {
         return this.velMX;
     }
 
-    public void setMotor(String motor) {
-        motor = motor;
-    }
-    public String getMotor() {
-        return this.motor;
+    public Motor getMotor() {
+        return motor;
     }
 
-    public Aviones(float capCombustible,float costoXKM,int capMXPasajeros,double velMX,String motor){
+    public void setMotor(Motor motor) {
+        this.motor = motor;
+    }
+
+    public Aviones(float capCombustible, float costoXKM, int capMXPasajeros, double velMX, Motor motor){
         this.capCombustible = capCombustible;
         this.costoXKM = costoXKM;
         this.capMXPasajeros = capMXPasajeros;
