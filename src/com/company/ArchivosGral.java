@@ -10,5 +10,5 @@ public class ArchivosGral {
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.writeValue(correspondiente, generico);
     }
-    public Object retirarObjeto(File)
+    public Object retirarObjeto(File);
 }
