@@ -71,10 +71,10 @@ public class Vuelos {
         return total;
     }
 
-    public int disponibilidad(ArrayList vuelos,Vuelos enProceso){
+    /*public int disponibilidad(ArrayList vuelos,Vuelos enProceso){
 
         ///usamos equals?
-    }
+    }*/
 
     @Override
     public boolean equals(Object obj){
