@@ -7,7 +7,7 @@ public class Silver extends Aviones  {
     private String Platillo;
 
     public Silver(float capCombustible, float costoXKM, int capMXPasajeros, double velMX, Motor motor, String platillo) {
-        super(capCombustible, costoXKM, capMXPasajeros, velMX, motor);
+        super(capCombustible, costoXKM, capMXPasajeros, velMX, motor,4000);
         Platillo = platillo;
     }
 

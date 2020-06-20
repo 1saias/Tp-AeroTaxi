@@ -8,6 +8,7 @@ public abstract class Aviones {
     private int capMXPasajeros;
     private double velMX;          //En km/h
     private Motor motor;
+    private int tarifa;
 
     public void setCapCombustible(float capCombustible) {
         this.capCombustible = capCombustible;
@@ -40,17 +41,25 @@ public abstract class Aviones {
     public Motor getMotor() {
         return motor;
     }
-
     public void setMotor(Motor motor) {
         this.motor = motor;
     }
 
-    public Aviones(float capCombustible, float costoXKM, int capMXPasajeros, double velMX, Motor motor){
+    public int getTarifa() {
+        return tarifa;
+    }
+
+    public void setTarifa(int tarifa) {
+        this.tarifa = tarifa;
+    }
+
+    public Aviones(float capCombustible, float costoXKM, int capMXPasajeros, double velMX, Motor motor,int tarifa){
         this.capCombustible = capCombustible;
         this.costoXKM = costoXKM;
         this.capMXPasajeros = capMXPasajeros;
         this.velMX = velMX;
         this.motor = motor;
+        this.tarifa = tarifa;
     }
 
     @Override
@@ -63,4 +72,5 @@ public abstract class Aviones {
                 ", motor='" + this.motor + '\'' +
                 '}';
     }
+
 }
