@@ -16,6 +16,9 @@ public class Vuelos {
     private Destino destino;
     private Origen origen;
 
+    private Ciudades Origen;
+    private Destinos destinos;
+
     public enum Destino{
         Cordoba,Montevideo,Santiago;
 
@@ -74,6 +77,13 @@ public class Vuelos {
         return origen;
     }
 
+    public enum Ciudades{
+        BsAs,Cordoba,Montevideo
+    }
+    public enum Destinos{
+        Cordoba,Santiago,Montevideo
+    }
+
 
     public Vuelos(LocalDateTime fecha, int acompañantes,int kilomentros, Usuario usuario, Aviones aeronave, Ciudades Origen, Destinos destinos) {
         this.fecha = fecha;
@@ -113,11 +123,19 @@ public class Vuelos {
                 this.aeronave.equals(aeronave);
     }
 
-    /*public boolean comprobacionfecha(ArrayList<Vuelos> vuelos, LocalDateTime seleccion){
-        for(Vuelos aux : vuelos ){
-            if()
+    public int comprobacionfecha(ArrayList<Vuelos> vuelos, LocalDateTime seleccion){
+        int i =0;
+        for(Vuelos auxv : vuelos ){
+            if(seleccion.compareTo(auxv.fecha)==0){
+                i=1;
+            }
         }
-    }*/
+        return i;
+    }
+    
+
+
+
 
 
     @Override
@@ -130,8 +148,6 @@ public class Vuelos {
                 ", aeronave=" + aeronave +
                 '}';
     }
-    private Ciudades Origen;
-    private Destinos destinos;
 
 
 
@@ -140,16 +156,8 @@ public class Vuelos {
         if (origen.equals(destinos) )
         {
             System.out.println("Ingrese un destino valido");
->>>>>>> bb2c62fa909ab1f4aba4041e8880d14a95138755
 
         }
     }*/
-
-    public enum Ciudades{
-        BsAs,Cordoba,Montevideo
-    }
-    public enum Destinos{
-        Cordoba,Santiago,Montevideo
-    }
 
 }
