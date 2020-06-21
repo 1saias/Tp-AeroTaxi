@@ -9,7 +9,6 @@ public abstract class Aviones {
     private double velMX;          //En km/h
     private Motor motor;
     private int tarifa;
-    private boolean reservado = false;
 
     public void setCapCombustible(float capCombustible) {
         this.capCombustible = capCombustible;
@@ -73,5 +72,4 @@ public abstract class Aviones {
                 ", motor='" + this.motor + '\'' +
                 '}';
     }
-
 }
