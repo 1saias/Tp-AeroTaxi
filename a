@@ -1,0 +1,69 @@
+[33mcommit e865da6446eb6c864eeee11c79d0d5ed40df7675[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31mTaxiAereo/master[m[33m)[m
+Merge: de0820f bb2c62f
+Author: Misael Flores <misaelflores4190@gmail.com>
+Date:   Fri Jun 19 23:30:49 2020 -0300
+
+    Solucionado
+    Merge branch 'master' of https://github.com/1saias/Tp-AeroTaxi
+
+[33mcommit de0820fff35675e726e81dc3cd8f618a99cc16f4[m
+Author: Misael Flores <misaelflores4190@gmail.com>
+Date:   Fri Jun 19 23:26:48 2020 -0300
+
+    prueba 1
+
+[33mcommit cc13e96a1826136aed06a9f76a679f011107ea5a[m[33m ([m[1;32mmio[m[33m)[m
+Author: Misael Flores <misaelflores4190@gmail.com>
+Date:   Fri Jun 19 23:11:55 2020 -0300
+
+    Reodenamiento de clases,atributos y metodos de cada categoria de avion y
+    los vuelos
+
+[33mcommit bb2c62fa909ab1f4aba4041e8880d14a95138755[m
+Author: 1saias <isaiastromero99@gmail.com>
+Date:   Fri Jun 19 22:22:34 2020 -0300
+
+    Ampliacion de la clase vuelos
+
+[33mcommit 4f0dae1ef424ada82a1391afb3f1a9ad09f4030f[m
+Author: 1saias <isaiastromero99@gmail.com>
+Date:   Fri Jun 19 21:05:22 2020 -0300
+
+    Intento de commmit anterior
+
+[33mcommit 6286f2445d4395404c18062f74643aa223f3f0d5[m
+Author: 1saias <isaiastromero99@gmail.com>
+Date:   Fri Jun 19 20:43:21 2020 -0300
+
+    Cambios en algunas clases y optimizacion.
+
+[33mcommit 2dedacd57878650131c10b0deb266e4e77dbaf50[m
+Author: 1saias <isaiastromero99@gmail.com>
+Date:   Fri Jun 19 20:41:19 2020 -0300
+
+     Cambios de clases y un par de cosas mas
+
+[33mcommit a46eed5d421120f190b139f1af8138808c6fc911[m
+Merge: 41111ed d564ccc
+Author: Misael Flores <misaelflores4190@gmail.com>
+Date:   Thu Jun 18 16:40:25 2020 -0300
+
+    Merge branch 'master' of https://github.com/1saias/Tp-AeroTaxi
+
+[33mcommit 41111ed5d2f7d47fb2fb08b2006194e9c5ff5dde[m
+Author: Misael Flores <misaelflores4190@gmail.com>
+Date:   Thu Jun 18 16:26:09 2020 -0300
+
+    Actualizacion
+
+[33mcommit f37780c30fec6ba0bff692a022898e839650af8d[m
+Author: Misael Flores <misaelflores4190@gmail.com>
+Date:   Thu Jun 18 15:30:44 2020 -0300
+
+    Primer commit
+
+[33mcommit d564cccc07e7b43f43c033fafed81fdc13cd7f0c[m
+Author: 1saias <isaiastromero99@gmail.com>
+Date:   Wed Jun 17 20:40:31 2020 -0300
+
+    first commit
