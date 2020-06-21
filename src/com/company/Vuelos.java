@@ -8,20 +8,20 @@ import java.util.ArrayList;
 public class Vuelos {
     private LocalDateTime fecha;
     private  int acompañantes;
-    private  int kilometros;
+    private  int kilometros=0;
     private  Usuario usuario;
     private Aviones aeronave;
     private float importe;
     private Destino destino;
     private Origen origen;
 
-    public Vuelos(LocalDateTime fecha, int acompañantes, int kilometros, Usuario usuario, Aviones aeronave, float importe, Destino destino, Origen origen) {
+    public Vuelos(LocalDateTime fecha, int acompañantes, Usuario usuario, Aviones aeronave, Destino destino, Origen origen) {
         this.fecha = fecha;
         this.acompañantes = acompañantes;
-        this.kilometros = kilometros;
+        this.kilometros = CantidadDeKms(origen,destino);
         this.usuario = usuario;
         this.aeronave = aeronave;
-        this.importe = importe;
+        this.importe = CalcularCostoTotal(kilometros,aeronave,acompañantes);
         this.destino = destino;
         this.origen = origen;
     }
@@ -91,6 +91,42 @@ public class Vuelos {
         BsAs,Cordoba,Montevideo;
     }
 
+    public int CantidadDeKms(Origen origen,Destino destino){
+        if (origen == Origen.BsAs) {
+            if (destino == Destino.Cordoba)
+            {
+                {
+                    this.kilometros = 695;
+                }
+
+            }else if(destino == Destino.Montevideo){
+
+                this.kilometros = 950;
+
+            }else if(destino == Destino.Santiago)
+            {
+                this.kilometros = 1400;
+            }
+
+        }else if(origen == Origen.Cordoba){
+
+            if(destino == Destino.Montevideo){
+
+                this.kilometros = 1190;
+
+            }else  if(destino == Destino.Santiago) {
+                this.kilometros = 1050;
+            }
+        }else if(origen == Origen.Montevideo && destino == Destino.Santiago)
+        {
+            this.kilometros = 2100;
+        }
+        if(this.kilometros == 0) {
+            System.out.println("Ingrese un destino valido");
+        }
+        return this.kilometros;
+    }
+
     public float CalcularCostoTotal(int kilomentros,Aviones aeronave,int acompañantes){
         float total = (kilomentros * aeronave.getCostoXKM())+
                 ((acompañantes+1)*3500) + (aeronave.getTarifa());
@@ -111,26 +147,16 @@ public class Vuelos {
     }
 
     @Override
-    public boolean equals(Object obj){
-        if(obj == this) return true;
-        if(!(obj instanceof Vuelos))return false;
-        Vuelos vl=(Vuelos)obj;
-        return this.fecha.equals(vl.fecha) && this.acompañantes == vl.acompañantes &&
-                this.kilometros == vl.kilometros && this.usuario.equals(usuario) &&
-                this.aeronave.equals(aeronave);
-    }
-
-
-
-    @Override
     public String toString() {
         return "Vuelos{" +
                 "fecha=" + fecha +
-                ", acompañantes=" + acompañantes +
-                ", kilomentros=" + kilometros +
-                ", usuario=" + usuario +
+                ", kilometros=" + kilometros +
                 ", aeronave=" + aeronave +
+                ", acompañantes=" + acompañantes +
+                ", importe=" + importe +
+                ", destino=" + destino +
+                ", origen=" + origen +
+                ", usuario=" + usuario +
                 '}';
     }
-
 }

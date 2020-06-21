@@ -1,6 +1,6 @@
 package com.company;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+/*import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
 import java.io.IOException;
@@ -11,4 +11,4 @@ public class ArchivosGral {
         objectMapper.writeValue(correspondiente, generico);
     }
     public Object retirarObjeto(File);
-}
+}*/

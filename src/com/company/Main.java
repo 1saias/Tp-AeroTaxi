@@ -12,7 +12,7 @@ public class Main {
         Usuario Pepe = new Usuario("Pepito","Fernandez",15423891,50);
         Bronze stratoCosta = new Bronze(55f,150f,30,500f,Motor.AHelice);
         Silver Piderosta = new Silver(79F,280F,80,600F,Motor.AReaccion,Menu.eleccion9);
-        Vuelos volar = new Vuelos(LocalDateTime.now(),10,230,Pepe,Piderosta, Vuelos.Ciudades.BsAs, Vuelos.Destinos.Cordoba);
+        Vuelos volar = new Vuelos(LocalDateTime.now(),10,Pepe,Piderosta,Vuelos.Destino.Montevideo,Vuelos.Origen.Montevideo);
         List<Aviones> Flota = new ArrayList<>();
         Flota.add(stratoCosta);
         Flota.add(Piderosta);
