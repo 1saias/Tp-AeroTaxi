@@ -16,8 +16,20 @@ public class Vuelos {
     private Destino destino;
     private Origen origen;
 
-    private Ciudades Origen;
-    private Destinos destinos;
+
+    public Vuelos(LocalDateTime fecha, int acompañantes,int kilomentros, Usuario usuario, Aviones aeronave, Origen origen, Destino destinos) {
+        this.fecha = fecha;
+        this.acompañantes = acompañantes;
+        this.kilometros = kilomentros;
+        this.usuario = usuario;
+        this.aeronave = aeronave;
+        this.origen = origen;
+        this.destino = destinos;
+        this.aeronave.setReservado(1);
+        this.importe = CalcularCostoTotal(kilomentros,aeronave,acompañantes);
+    }
+
+
 
     public enum Destino{
         Cordoba,Montevideo,Santiago;
@@ -77,24 +89,6 @@ public class Vuelos {
         return origen;
     }
 
-    public enum Ciudades{
-        BsAs,Cordoba,Montevideo
-    }
-    public enum Destinos{
-        Cordoba,Santiago,Montevideo
-    }
-
-
-    public Vuelos(LocalDateTime fecha, int acompañantes,int kilomentros, Usuario usuario, Aviones aeronave, Ciudades Origen, Destinos destinos) {
-        this.fecha = fecha;
-        this.acompañantes = acompañantes;
-        this.kilometros = kilomentros;
-        this.usuario = usuario;
-        this.aeronave = aeronave;
-        this.Origen = Origen;
-        this.destinos = destinos;
-        this.aeronave.setReservado(1);
-    }
 
     public float CalcularCostoTotal(int kilomentros,Aviones aeronave,int acompañantes){
         float total = (kilomentros * aeronave.getCostoXKM())+
@@ -134,7 +128,7 @@ public class Vuelos {
         return i;
     }
 
-    public void mostrarAvionesDisponibles(ArrayList<Aviones> flota,Aviones seleccion){
+   /* public void mostrarAvionesDisponibles(ArrayList<Aviones> flota,Aviones seleccion){
         for(Aviones avion : flota){
                 if(avion.)
             }
