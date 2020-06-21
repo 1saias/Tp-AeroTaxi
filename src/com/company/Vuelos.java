@@ -4,6 +4,7 @@ import com.company.Aeronaves.Aviones;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Vuelos {
     private LocalDateTime fecha;
@@ -12,50 +13,67 @@ public class Vuelos {
     private  Usuario usuario;
     private Aviones aeronave;
     private float importe;
+    private Destino destino;
+    private Origen origen;
 
+    public enum Destino{
+        Cordoba,Montevideo,Santiago;
 
+    }
+    public enum  Origen {
+        BsAs, Cordoba, Montevideo;
+    }
+
+    public void setFecha(LocalDateTime fecha){
+        this.fecha = fecha;
+    }
     public LocalDateTime getFecha() {
         return fecha;
     }
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
 
-    public int getAcompañantes() {
-        return acompañantes;
-    }
     public void setAcompañantes(int acompañantes) {
         this.acompañantes = acompañantes;
     }
-
-    public int getKilometros() {
-        return kilometros;
+    public int getAcompañantes() {
+        return acompañantes;
     }
+
     public void setKilometros(int kilometros) {
         this.kilometros = kilometros;
     }
-
-    public Usuario getUsuario() {
-        return usuario;
+    public int getKilometros() {
+        return kilometros;
     }
+
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
-
-    public Aviones getAeronave() {
-        return aeronave;
+    public Usuario getUsuario() {
+        return usuario;
     }
+
     public void setAeronave(Aviones aeronave) {
         this.aeronave = aeronave;
     }
-
-    public float getImporte() {
-        return importe;
+    public Aviones getAeronave() {
+        return aeronave;
     }
 
-    public void setImporte(float importe) {
-        this.importe = importe;
+
+    public void setDestino(Destino destino) {
+        this.destino = destino;
     }
+    public Destino getDestino() {
+        return destino;
+    }
+
+    public void setOrigen(Origen origen) {
+        this.origen = origen;
+    }
+    public Origen getOrigen() {
+        return origen;
+    }
+
 
     public Vuelos(LocalDateTime fecha, int acompañantes,int kilomentros, Usuario usuario, Aviones aeronave, Ciudades Origen, Destinos destinos) {
         this.fecha = fecha;
@@ -78,6 +96,13 @@ public class Vuelos {
         ///usamos equals?
     }*/
 
+    public float getImporte() {
+        return importe;
+    }
+    public void setImporte(float importe) {
+        this.importe = importe;
+    }
+
     @Override
     public boolean equals(Object obj){
         if(obj == this) return true;
@@ -88,6 +113,11 @@ public class Vuelos {
                 this.aeronave.equals(aeronave);
     }
 
+    /*public boolean comprobacionfecha(ArrayList<Vuelos> vuelos, LocalDateTime seleccion){
+        for(Vuelos aux : vuelos ){
+            if()
+        }
+    }*/
 
 
     @Override
