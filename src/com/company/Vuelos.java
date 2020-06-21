@@ -93,6 +93,7 @@ public class Vuelos {
         this.aeronave = aeronave;
         this.Origen = Origen;
         this.destinos = destinos;
+        this.aeronave.setReservado(1);
     }
 
     public float CalcularCostoTotal(int kilomentros,Aviones aeronave,int acompañantes){
@@ -132,11 +133,12 @@ public class Vuelos {
         }
         return i;
     }
-    
 
-
-
-
+    public void mostrarAvionesDisponibles(ArrayList<Aviones> flota,Aviones seleccion){
+        for(Aviones avion : flota){
+                if(avion.)
+            }
+        }*/
 
     @Override
     public String toString() {
@@ -148,9 +150,6 @@ public class Vuelos {
                 ", aeronave=" + aeronave +
                 '}';
     }
-
-
-
 
    /* public int TotalDeKm(Ciudades origen,Destinos destinos) {
         if (origen.equals(destinos) )
