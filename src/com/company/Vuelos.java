@@ -4,119 +4,96 @@ import com.company.Aeronaves.Aviones;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Vuelos {
     private LocalDateTime fecha;
     private  int acompañantes;
-    private  int kilometros=0;
+    private  int kilometros;
     private  Usuario usuario;
     private Aviones aeronave;
     private float importe;
     private Destino destino;
     private Origen origen;
 
-    public Vuelos(LocalDateTime fecha, int acompañantes,Usuario usuario, Aviones aeronave,  Destino destino, Origen origen) {
-        this.fecha = fecha;
-        this.acompañantes = acompañantes;
-        this.kilometros = KilometrosDelViaje(origen,destino);
-        this.usuario = usuario;
-        this.aeronave = aeronave;
-        this.importe = CalcularCostoTotal(kilometros,aeronave,acompañantes);
-        this.destino = destino;
-        this.origen = origen;
-    }
-
-    public int KilometrosDelViaje(Origen origen,Destino destino) {
-        if (origen == Origen.BsAs)
-        {
-            if (destino == Destino.Cordoba) {
-                kilometros = 695;
-            }else if(destino == Destino.Santiago) {
-                kilometros = 1400;
-            }else if(destino == Destino.Montevideo) {
-             kilometros = 950;
-            }
-        }else if(origen == Origen.Cordoba){
-            if (destino == Destino.Montevideo){
-                kilometros = 1190;
-            }else if(destino == Destino.Santiago){
-                kilometros = 1050;
-            }
-        }else if (origen == Origen.Montevideo && destino == Destino.Santiago) {
-            kilometros = 2100;
-        }
-
-        if (kilometros == 0)
-        {
-            System.out.println("Ingrese un destino valido");
-        }
-
-        return kilometros;
-    }
-
-    public LocalDateTime getFecha() {
-        return fecha;
-    }
-
-    public int getAcompañantes() {
-        return acompañantes;
-    }
-
-    public void setAcompañantes(int acompañantes) {
-        this.acompañantes = acompañantes;
-    }
-
-    public int getKilometros() {
-        return kilometros;
-    }
-
-    public void setKilometros(int kilometros) {
-        this.kilometros = kilometros;
-    }
-
-    public Usuario getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(Usuario usuario) {
-        this.usuario = usuario;
-    }
-
-    public Aviones getAeronave() {
-        return aeronave;
-    }
-
-    public void setAeronave(Aviones aeronave) {
-        this.aeronave = aeronave;
-    }
-
-    public Destino getDestino() {
-        return destino;
-    }
-
-    public void setDestino(Destino destino) {
-        this.destino = destino;
-    }
-
-    public Origen getOrigen() {
-        return origen;
-    }
-
-    public void setOrigen(Origen origen) {
-        this.origen = origen;
-    }
-
-    public void setFecha(LocalDateTime fecha) {
-        this.fecha = fecha;
-    }
+    private Ciudades Origen;
+    private Destinos destinos;
 
     public enum Destino{
         Cordoba,Montevideo,Santiago;
 
     }
+    public enum  Origen {
+        BsAs, Cordoba, Montevideo;
+    }
 
-    public enum  Origen{
-        BsAs,Cordoba,Montevideo;
+    public void setFecha(LocalDateTime fecha){
+        this.fecha = fecha;
+    }
+    public LocalDateTime getFecha() {
+        return fecha;
+    }
+
+    public void setAcompañantes(int acompañantes) {
+        this.acompañantes = acompañantes;
+    }
+    public int getAcompañantes() {
+        return acompañantes;
+    }
+
+    public void setKilometros(int kilometros) {
+        this.kilometros = kilometros;
+    }
+    public int getKilometros() {
+        return kilometros;
+    }
+
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    public void setAeronave(Aviones aeronave) {
+        this.aeronave = aeronave;
+    }
+    public Aviones getAeronave() {
+        return aeronave;
+    }
+
+
+    public void setDestino(Destino destino) {
+        this.destino = destino;
+    }
+    public Destino getDestino() {
+        return destino;
+    }
+
+    public void setOrigen(Origen origen) {
+        this.origen = origen;
+    }
+    public Origen getOrigen() {
+        return origen;
+    }
+
+    public enum Ciudades{
+        BsAs,Cordoba,Montevideo
+    }
+    public enum Destinos{
+        Cordoba,Santiago,Montevideo
+    }
+
+
+    public Vuelos(LocalDateTime fecha, int acompañantes,int kilomentros, Usuario usuario, Aviones aeronave, Ciudades Origen, Destinos destinos) {
+        this.fecha = fecha;
+        this.acompañantes = acompañantes;
+        this.kilometros = kilomentros;
+        this.usuario = usuario;
+        this.aeronave = aeronave;
+        this.Origen = Origen;
+        this.destinos = destinos;
+        this.aeronave.setReservado(1);
     }
 
     public float CalcularCostoTotal(int kilomentros,Aviones aeronave,int acompañantes){
@@ -133,7 +110,6 @@ public class Vuelos {
     public float getImporte() {
         return importe;
     }
-
     public void setImporte(float importe) {
         this.importe = importe;
     }
@@ -148,7 +124,21 @@ public class Vuelos {
                 this.aeronave.equals(aeronave);
     }
 
+    public int comprobacionfecha(ArrayList<Vuelos> vuelos, LocalDateTime seleccion){
+        int i =0;
+        for(Vuelos auxv : vuelos ){
+            if(seleccion.compareTo(auxv.fecha)==0){
+                i=1;
+            }
+        }
+        return i;
+    }
 
+    public void mostrarAvionesDisponibles(ArrayList<Aviones> flota,Aviones seleccion){
+        for(Aviones avion : flota){
+                if(avion.)
+            }
+        }*/
 
     @Override
     public String toString() {
@@ -160,5 +150,13 @@ public class Vuelos {
                 ", aeronave=" + aeronave +
                 '}';
     }
+
+   /* public int TotalDeKm(Ciudades origen,Destinos destinos) {
+        if (origen.equals(destinos) )
+        {
+            System.out.println("Ingrese un destino valido");
+
+        }
+    }*/
 
 }
