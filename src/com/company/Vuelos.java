@@ -1,6 +1,9 @@
 package com.company;
 
 import com.company.Aeronaves.Aviones;
+import com.company.Aeronaves.Bronze;
+import com.company.Aeronaves.Gold;
+import com.company.Aeronaves.Silver;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -101,12 +104,7 @@ public class Vuelos {
                 ((acompañantes+1)*3500) + (aeronave.getTarifa());
         return total;
     }
-
-    /*public int disponibilidad(ArrayList vuelos,Vuelos enProceso){
-
-        ///usamos equals?
-    }*/
-
+    
     public float getImporte() {
         return importe;
     }
@@ -134,11 +132,33 @@ public class Vuelos {
         return i;
     }
 
-    public void mostrarAvionesDisponibles(ArrayList<Aviones> flota,Aviones seleccion){
+    public void mostrarAvionesDisponibles(ArrayList<Aviones> flota){
         for(Aviones avion : flota){
-                if(avion.)
+                if(avion.getReservado() == 0){
+                    if(avion instanceof Bronze){
+                        System.out.println(avion.toString());
+                    }else{
+                        if(avion instanceof Silver){
+                            System.out.println(avion.toString());
+                        }else{
+                            if(avion instanceof Gold){
+                                System.out.println(avion.toString());
+                            }
+                        }
+                    }
+                }
             }
-        }*/
+        }
+
+        public int validarUsuario(ArrayList<Usuario> usuarios,Usuario usuario){
+        int validacion=0;
+            for(Usuario user : usuarios){
+                if(user.equals(usuario)==true){
+                        validacion =1;
+                }
+            }
+            return validacion;
+        }
 
     @Override
     public String toString() {
