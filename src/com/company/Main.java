@@ -18,20 +18,7 @@ public class Main {
         List<Aviones> Flota = new ArrayList<>();
         Flota.add(stratoCosta);
         Flota.add(Piderosta);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        /// Dejame pushear por favor
         /*for(Aviones flotita : Flota){
             if(flotita instanceof Bronze){
                 System.out.println(flotita.toString());
