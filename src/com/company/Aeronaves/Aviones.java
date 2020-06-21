@@ -3,6 +3,7 @@ package com.company.Aeronaves;
 import com.company.Motor;
 
 public abstract class Aviones {
+    private String nombre;
     private float capCombustible;
     private float costoXKM;
     private int capMXPasajeros;
@@ -10,6 +11,13 @@ public abstract class Aviones {
     private Motor motor;
     private int tarifa;
     private int reservado =0;
+
+    public String getNombre() {
+        return this.nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
 
     public void setCapCombustible(float capCombustible) {
         this.capCombustible = capCombustible;
