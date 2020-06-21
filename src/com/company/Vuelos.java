@@ -12,7 +12,7 @@ import java.util.List;
 public class Vuelos {
     private LocalDateTime fecha;
     private int acompañantes;
-    private int kilometros;
+    private int kilometros=0;
     private Usuario usuario;
     private Aviones aeronave;
     private float importe;
@@ -23,7 +23,7 @@ public class Vuelos {
     public Vuelos(LocalDateTime fecha, int acompañantes, int kilomentros, Usuario usuario, Aviones aeronave, Origen origen, Destino destinos) {
         this.fecha = fecha;
         this.acompañantes = acompañantes;
-        this.kilometros = kilomentros;
+        this.kilometros = ContarKm(origen,destinos);
         this.usuario = usuario;
         this.aeronave = aeronave;
         this.origen = origen;
@@ -32,6 +32,29 @@ public class Vuelos {
         this.importe = CalcularCostoTotal(kilomentros, aeronave, acompañantes);
     }
 
+    public int ContarKm(Origen origen,Destino destino) {
+        if (origen == Origen.BsAs) {
+            if (destino == Destino.Cordoba) {
+                kilometros = 695;
+            }
+            if (destino == Destino.Montevideo) {
+                kilometros = 950;
+            }
+            if (destino == Destino.Santiago) {
+                kilometros = 1400;
+            }
+        } else if (origen == Origen.Cordoba) {
+            if (destino == Destino.Montevideo) {
+                kilometros = 1190;
+            }
+            if (destino == Destino.Santiago) {
+                kilometros = 1050;
+            }
+        }else  if (origen == Origen.Montevideo && destino == Destino.Santiago){
+            kilometros = 2100;
+        }
+        return kilometros;
+    }
 
     public enum Destino {
         Cordoba, Montevideo, Santiago;
@@ -167,13 +190,16 @@ public class Vuelos {
         return "Vuelos{" +
                 "fecha=" + fecha +
                 ", acompañantes=" + acompañantes +
-                ", kilomentros=" + kilometros +
-                ", usuario=" + usuario +
+                ", kilometros=" + kilometros +
+                ", importe=" + importe +
+                ", destino=" + destino +
+                ", origen=" + origen +
                 ", aeronave=" + aeronave +
+                ", usuario=" + usuario +
                 '}';
     }
 
-   /* public int TotalDeKm(Ciudades origen,Destinos destinos) {
+  /* public int TotalDeKm(Ciudades origen,Destinos destinos) {
         if (origen.equals(destinos) )
         {
             System.out.println("Ingrese un destino valido");
