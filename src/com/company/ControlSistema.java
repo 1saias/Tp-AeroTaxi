@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class ControlSistema<seleccion> {
+
     public void inicializarSistema() {
         ///crear archivos
         List<Aviones> iniAVI = new ArrayList<>();
@@ -53,17 +54,17 @@ public class ControlSistema<seleccion> {
         Scanner sc = new Scanner(System.in);
         int op;
         char resp;
-        System.out.println("Seleccione alguna de las siguientes acciones");
-        System.out.println("1.Contratar Vuelo");
-        System.out.println("2.Cancelar Vuelo");
-        System.out.println("3.Informacion");
-        System.out.println("4.Terminar Programa");
-        op = sc.nextInt();
 
         do {
+            System.out.println("Seleccione alguna de las siguientes acciones");
+            System.out.println("1.Contratar Vuelo");
+            System.out.println("2.Cancelar Vuelo");
+            System.out.println("3.Informacion");
+            System.out.println("4.Terminar Programa");
+            op = sc.nextInt();
             switch (op) {
                 case 1:
-                    ///Menu CONTRATACION
+                    menuContratacion(iniAvi, iniUser, iniVue, cliente);
                     break;
                 case 2:
                     //MENU CANCELAR
@@ -116,56 +117,64 @@ public class ControlSistema<seleccion> {
             } else {
                 seleccionFecha(iniVue);
             }
+        } else {
+            System.out.println("Hay un vuelo programado para esa fecha,por favor ingrese otra");
+            seleccionFecha(iniVue);
         }
         return seleccion;
     }
 
     //SELECCION AVION
-    public static void mostrarAvionesDisponibles(List<Aviones> flota,List<Vuelos> agendados,
-                                                 int acompañante,LocalDateTime seleccion) {
-        for (Aviones avion : flota) {
-            for (Vuelos vuelo : agendados) {
-                if (vuelo.getFecha().compareTo(seleccion) == 0) {
-                    if (flota.equals(vuelo.getAeronave()) == false) {
-                        if(avion.getCapMXPasajeros() >= acompañante){
-                            if (avion instanceof Bronze) {
-                                System.out.println(avion.toString());
-                            } else {
-                                if (avion instanceof Silver) {
+    public static void mostrarAvionesDisponibles(List<Aviones> iniAvi, List<Vuelos> inivue,
+                                                 int acompañante, LocalDateTime seleccion) {
+        for (Aviones avion : iniAvi) {
+            for (Vuelos vuelo : inivue) {
+                if (vuelo.getFecha().getMonth().compareTo(seleccion.getMonth()) == 0) {
+                    if (vuelo.getFecha().getDayOfMonth() == seleccion.getDayOfMonth()) {
+                        if (iniAvi.equals(vuelo.getAeronave()) == false) {
+                            if (avion.getCapMXPasajeros() >= acompañante + 1) {
+                                if (avion instanceof Bronze) {
                                     System.out.println(avion.toString());
                                 } else {
-                                    if (avion instanceof Gold) {
+                                    if (avion instanceof Silver) {
                                         System.out.println(avion.toString());
+                                    } else {
+                                        if (avion instanceof Gold) {
+                                            System.out.println(avion.toString());
+                                        }
                                     }
                                 }
                             }
-                        }else {
-                            System.out.println("No hay ninguna aeronave disponible con dicha capacidad," +
-                                    "ingrese otra fecha o elija otro avion");
                         }
                     }
                 }
             }
         }
-        System.out.println("Si no logro ver ninguna aeronave para su seleccion,ingrese otra fecha,por favor");
     }
 
-    public static Aviones seleccionAvion(List<Aviones> iniAvi,List<Vuelos> iniVue,
-                                         int acompañante,LocalDateTime seleccionado) {
+    public static Aviones seleccionAvion(List<Aviones> iniAvi, List<Vuelos> iniVue, List<Usuario> iniUser,
+                                         int acompañante, LocalDateTime seleccionado, Usuario cliente) {
         Scanner sc = new Scanner(System.in);
         Aviones seleccion = new Aviones();
-        mostrarAvionesDisponibles(iniAvi,iniVue,acompañante,seleccionado);
-        System.out.println("Ingrese el numero de serie del avion que desee seleccionar");
+        mostrarAvionesDisponibles(iniAvi, iniVue, acompañante, seleccionado);
+        System.out.println("Ingrese el numero de serie del avion que desee seleccionar  \n" +
+                "En caso de no ver ningun avion(no se pudo encontrar uno con sus requerimientos) " +
+                "o de no estar satisfecho con lo mostrado," +
+                "Ingrese 0 para volver a la seleccion de fechas");
         int numSer = sc.nextInt();
-        for (Aviones aux : iniAvi) {
-            if (aux.getNumSerie() == numSer) {
+        if (numSer != 0) {
+            for (Aviones aux : iniAvi) {
+                if (aux.getNumSerie() == numSer) {
                     seleccion = aux;
+                }
             }
+        } else {
+            menuContratacion(iniAvi, iniUser, iniVue, cliente);
         }
         return seleccion;
     }
 
-
+    ///MENU DE CONTRATACION Y CREACION DEL VUELO
     public static void menuContratacion(List<Aviones> iniAvi, List<Usuario> iniUser,
                                         List<Vuelos> iniVue, Usuario cliente) {
         Scanner sc = new Scanner(System.in);
@@ -180,7 +189,7 @@ public class ControlSistema<seleccion> {
 
         System.out.println("Ingrese cantidad de acompañantes");
         acompañantes = sc.nextInt();
-        Aviones selAvion = seleccionAvion(iniAvi,iniVue,acompañantes,selFecha);
+        Aviones selAvion = seleccionAvion(iniAvi, iniVue, iniUser, acompañantes, selFecha, cliente);
         /*if (aux instanceof Bronze) {
             Bronze selAvion = (Bronze) aux;
         } else {
@@ -194,21 +203,27 @@ public class ControlSistema<seleccion> {
         }*/
 
         Vuelos nuevo = new Vuelos();
-        nuevo = new Vuelos(selFecha,acompañantes,cliente,selAvion,nuevo.ContarKm(nuevo.getOrigen(),nuevo.getDestino()),
-                origen elegido,Destino elegido);
-        for(Vuelos aux: iniVue){
-            if(aux.equals(nuevo)==true){
-                System.out.println("hay un vuelo programado,elija otro dia");
-                seleccionFecha(iniVue);
+        nuevo = new Vuelos(selFecha, acompañantes, cliente, selAvion, nuevo.ContarKm(nuevo.getOrigen(), nuevo.getDestino()),
+                /*origen elegido*/,/*Destino elegido*/);
+        for (Vuelos aux : iniVue) {
+            if (aux.equals(nuevo) == true) {
+                System.out.println("Hay un vuelo programado,elija otro dia");
+                menuContratacion(iniAvi, iniUser, iniVue, cliente);
             }
+            System.out.println(nuevo.toString());
             System.out.println("Su proceso fue satifactorio,desea confirmar S/N");
             resp = sc.next().charAt(0);
-            if(resp == 'S'){
+            if (resp == 'S') {
                 iniVue.add(nuevo);
             }
         }
 
 
     }
+
+    public static void cancelarVuelo(List<Vuelos> iniVue,Usuario cliente){
+        System.out.println("Ingrese codigo de reserva para esto:");
+    }
+
 
 }

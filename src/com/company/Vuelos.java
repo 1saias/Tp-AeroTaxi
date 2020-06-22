@@ -100,13 +100,13 @@ public class Vuelos {
         if (!(obj instanceof Vuelos)) return false;
         Vuelos vl = (Vuelos) obj;
         return this.fecha.equals(vl.fecha) && this.acompañantes == vl.acompañantes &&
-                this.kilometros == vl.kilometros && this.usuario.equals(usuario) &&
-                this.aeronave.equals(aeronave);
+                this.kilometros == vl.kilometros && this.usuario.equals(vl.usuario) &&
+                this.aeronave.equals(vl.aeronave);
     }
 
-    public static int comprobacionfecha(ArrayList<Vuelos> vuelos, LocalDateTime seleccion) {
+    public static int comprobacionfecha(List<Vuelos> inivue, LocalDateTime seleccion) {
         int i = 0;
-        for (Vuelos auxv : vuelos) {
+        for (Vuelos auxv : inivue) {
             if (seleccion.compareTo(auxv.fecha) == 0) {
                 i = 1;
             }
@@ -115,10 +115,10 @@ public class Vuelos {
     }
 
 
-    public int validarUsuario(ArrayList<Usuario> usuarios, Usuario usuario) {
+    public int validarUsuario(List<Usuario> iniUser, Usuario cliente) {
         int validacion = 0;
-        for (Usuario user : usuarios) {
-            if (user.equals(usuario) == true) {
+        for (Usuario user : iniUser) {
+            if (user.equals(cliente) == true) {
                 validacion = 1;
             }
         }
@@ -212,9 +212,10 @@ public class Vuelos {
 
 
     ///
-    public void CancelarVuelo(LocalDateTime fecha, Aviones aeronave) {
+    public void CancelarVuelo(LocalDateTime fecha, List<Vuelos> iniVue,Usuario cliente) {
         LocalDateTime fechaEnElMomento = LocalDateTime.now();
         boolean dictador = fecha.isAfter(fechaEnElMomento);
+        int i = 0;
         if (dictador == true) {
             Scanner sc = new Scanner(System.in);
             System.out.println("Desea realmente cancelar el vuelo? \n ");
@@ -222,12 +223,17 @@ public class Vuelos {
             System.out.println("Presion 0 para cancelar ");
             int confirmacion = sc.nextInt();
             if (confirmacion == 1) {
-                aeronave.setReservado(0);
+                for (Vuelos vl : iniVue) {
+                    if (vl.usuario.equals(cliente) == true) {
+                        if (vl.fecha.compareTo(fecha) == 0) {
+                            iniVue.remove(i);
+                        }
+                    }
+                    i++;
+                }
             }
         }
-
     }
-
 
 
 
