@@ -18,7 +18,8 @@ public class Main {
         List<Aviones> flota = new ArrayList<>();
         flota.add(stratoCosta);
         flota.add(Piderosta);
-
+        System.out.println(directorio1);
+        /*
         for(Aviones avion : flota){
             if(avion.getReservado() == 1){
                 if(avion instanceof Bronze){
@@ -34,8 +35,12 @@ public class Main {
                 }
             }
         }
+<<<<<<< HEAD
 
         for(Aviones flotita : Flota){
+=======
+        */
+        /*for(Aviones flotita : Flota){
             if(flotita instanceof Bronze){
                 System.out.println(flotita.toString());
             }else {

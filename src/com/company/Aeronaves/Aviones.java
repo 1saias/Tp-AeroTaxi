@@ -4,6 +4,7 @@ import com.company.Motor;
 
 public abstract class Aviones {
     private String nombre;
+    private int numSerie;
     private float capCombustible;
     private float costoXKM;
     private int capMXPasajeros;
@@ -12,11 +13,19 @@ public abstract class Aviones {
     private int tarifa;
     private int reservado =0;
 
+
     public String getNombre() {
         return this.nombre;
     }
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public int getNumSerie(){
+        return this.numSerie;
+    }
+    public void setNumSerie(int numSerie){
+        this.numSerie = numSerie;
     }
 
     public void setCapCombustible(float capCombustible) {
@@ -57,7 +66,6 @@ public abstract class Aviones {
     public int getTarifa() {
         return tarifa;
     }
-
     public void setTarifa(int tarifa) {
         this.tarifa = tarifa;
     }
@@ -65,12 +73,14 @@ public abstract class Aviones {
     public int getReservado() {
         return reservado;
     }
-
     public void setReservado(int reservado) {
         this.reservado = reservado;
     }
 
-    public Aviones(float capCombustible, float costoXKM, int capMXPasajeros, double velMX, Motor motor,int tarifa){
+
+    public Aviones(String nombre,int numSerie,float capCombustible, float costoXKM, int capMXPasajeros, double velMX, Motor motor,int tarifa){
+        this.nombre = nombre;
+        this.numSerie = numSerie;
         this.capCombustible = capCombustible;
         this.costoXKM = costoXKM;
         this.capMXPasajeros = capMXPasajeros;
@@ -82,12 +92,15 @@ public abstract class Aviones {
     @Override
     public String toString() {
         return "Aviones{" +
-                "capCombustible=" + this.capCombustible +
-                ", costoXKM=" + this.costoXKM +
-                ", capMXPasajeros=" + this.capMXPasajeros +
-                ", velMX=" + this.velMX +
-                ", motor='" + this.motor + '\'' +
+                "nombre='" + nombre + '\'' +
+                ", numSerie=" + numSerie +
+                ", capCombustible=" + capCombustible +
+                ", costoXKM=" + costoXKM +
+                ", capMXPasajeros=" + capMXPasajeros +
+                ", velMX=" + velMX +
+                ", motor=" + motor +
+                ", tarifa=" + tarifa +
+                ", reservado=" + reservado +
                 '}';
     }
-
 }
