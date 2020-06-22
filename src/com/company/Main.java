@@ -1,17 +1,15 @@
 package com.company;
 
 import com.company.Aeronaves.*;
-import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.File;
-import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)  {
 
 
         Usuario Pepe = new Usuario("Pepito","Fernandez",15423891,50);
@@ -19,16 +17,14 @@ public class Main {
 
 
 
+       Bronze stratoCosta = new Bronze("avionxd",150,30,500f,30,50f,Motor.APropulsion);
+       System.out.println("Classe:"+stratoCosta.toString());
 
-
-       /* Bronze stratoCosta = new Bronze(55f,150f,30,500f,Motor.AHelice);
-        Silver Piderosta = new Silver(79F,280F,80,600F,Motor.AReaccion,Menu.eleccion9);
-        Gold Goldi = new Gold(100F,532F,20,700F,Motor.APropulsion,Menu.eleccion2,"Probablemente");
-        Vuelos directorio1 = new Vuelos(LocalDateTime.of(2020,6,22,23,15),10,230,Pepe,Piderosta, Vuelos.Origen.BsAs, Vuelos.Destino.Montevideo);
+        /*Vuelos directorio1 = new Vuelos(LocalDateTime.of(2020,6,22,23,15),10,230,Pepe,Piderosta, Vuelos.Origen.BsAs, Vuelos.Destino.Montevideo);
         Vuelos directorio2 = new Vuelos(LocalDateTime.of(2020,6,21,20,15),10,230,Pipo,stratoCosta, Vuelos.Origen.BsAs, Vuelos.Destino.Cordoba);
         List<Vuelos> flota = new LinkedList<>();
         flota.add(directorio1);
-        flota.add(directorio2);
+        flota.add(directorio2);*/
 
 
 
@@ -47,7 +43,7 @@ public class Main {
 
 
 
-
+/*
 
 
         directorio1.CancelarVuelo(directorio1.getFecha(),directorio1.getAeronave());
@@ -72,8 +68,8 @@ public class Main {
             }
         }
 
-        for(Aviones flotita : Flota){
-        */
+        *//*for(Aviones flotita : Flota){*/
+
         /*for(Aviones flotita : Flota){
             if(flotita instanceof Bronze){
                 System.out.println(flotita.toString());

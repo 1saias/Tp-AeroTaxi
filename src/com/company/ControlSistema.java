@@ -152,8 +152,7 @@ public class ControlSistema {
         }
     }
 
-    public static Aviones seleccionAvion(List<Aviones> iniAvi, List<Vuelos> iniVue, List<Usuario> iniUser,
-                                         int acompañante, LocalDateTime seleccionado, Usuario cliente) {
+    public static Aviones seleccionAvion(List<Aviones> iniAvi, List<Vuelos> iniVue, List<Usuario> iniUser, int acompañante, LocalDateTime seleccionado, Usuario cliente) {
         Scanner sc = new Scanner(System.in);
         Aviones seleccion = new Aviones();
         mostrarAvionesDisponibles(iniAvi, iniVue, acompañante, seleccionado);
@@ -175,19 +174,90 @@ public class ControlSistema {
     }
 
     ///MENU DE CONTRATACION Y CREACION DEL VUELO
-    public static List<Vuelos> menuContratacion(List<Aviones> iniAvi, List<Usuario> iniUser,
-                                        List<Vuelos> iniVue, Usuario cliente) {
+    public static List<Vuelos> menuContratacion(List<Aviones> iniAvi, List<Usuario> iniUser, List<Vuelos> iniVue, Usuario cliente) {
         Scanner sc = new Scanner(System.in);
         char resp;
         int acompañantes;
+        Vuelos nuevo = new Vuelos();
         System.out.println("-Bienvido al menu de contratacion " + cliente.getNombre() + "-");
 
         LocalDateTime selFecha = seleccionFecha(iniVue);
-        System.out.println("Ingrese el origen de su vuelo");
 
-        ///MOSTRAR ORIGEN,DESTINO SIN LA CIUDAD SELECCIONADA Y LUEGO AGREGAR EN UN STRING CADA UNO;
+        System.out.println("Ingrese el origen de su vuelo  \n");
 
+            System.out.println("1- Buenos Aires \n");
+
+            System.out.println("2- Cordoba\n");
+
+            System.out.println("3- Montevideo\n");
+
+            int origen=sc.nextInt();
+
+            switch (origen){
+                case 1:
+                    nuevo.setOrigen(Vuelos.Origen.BsAs);
+
+                    System.out.println("Ingrese el destino de su vuelo \n");
+
+                    System.out.println("1-Cordoba \n");
+
+                    System.out.println("2-Montevideo \n");
+
+                    System.out.println("3-Santiago\n");
+
+
+                    int destinoBSas = sc.nextInt();
+                    if (destinoBSas == 1){
+                        nuevo.setDestino(Vuelos.Destino.Cordoba);
+                    }
+                    if (destinoBSas == 2){
+                        nuevo.setDestino(Vuelos.Destino.Montevideo);
+                    }
+                    if (destinoBSas == 3){
+                        nuevo.setDestino(Vuelos.Destino.Santiago);
+
+                    }
+                    break;
+                    case 2:
+                    nuevo.setOrigen(Vuelos.Origen.Cordoba);
+
+                    System.out.println("Ingrese el destino de su vuelo \n");
+
+                    System.out.println("1- Montevideo\n");
+
+                    System.out.println("2- Santiago\n");
+
+                    int destinoCordoba = sc.nextInt();
+
+                    if (destinoCordoba == 1){
+
+                        nuevo.setDestino(Vuelos.Destino.Montevideo);
+
+                    }else if(destinoCordoba == 2){
+
+                        nuevo.setDestino(Vuelos.Destino.Santiago);
+                    }
+                    break;
+
+                    case 3:
+                        nuevo.setOrigen(Vuelos.Origen.Montevideo);
+
+                        System.out.println("Ingrese el destino de su vuelo\n");
+
+                        System.out.println("1-Santiago\n");
+
+                        int destinoMontevideo = sc.nextInt();
+
+                        if (destinoMontevideo == 1){
+
+                            nuevo.setDestino(Vuelos.Destino.Santiago);
+                        }
+
+                        break;
+
+            }
         System.out.println("Ingrese cantidad de acompañantes");
+
         acompañantes = sc.nextInt();
         Aviones selAvion = seleccionAvion(iniAvi, iniVue, iniUser, acompañantes, selFecha, cliente);
         /*if (aux instanceof Bronze) {
@@ -202,9 +272,7 @@ public class ControlSistema {
             }
         }*/
 
-        Vuelos nuevo = new Vuelos();
-        nuevo = new Vuelos(selFecha, acompañantes, cliente, selAvion, nuevo.ContarKm(nuevo.getOrigen(), nuevo.getDestino()),
-                /*origen elegido*/,/*Destino elegido*/);
+
         for (Vuelos aux : iniVue) {
             if (aux.equals(nuevo) == true) {
                 System.out.println("Hay un vuelo programado,elija otro dia");
