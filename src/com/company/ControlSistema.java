@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class ControlSistema<seleccion> {
+public class ControlSistema {
 
     public void inicializarSistema() {
         ///crear archivos
@@ -41,7 +41,7 @@ public class ControlSistema<seleccion> {
     public static int validarUsuario(List<Usuario> usuarios, Usuario usuario) {
         int validacion = 0;
         for (Usuario user : usuarios) {
-            if (user.equals(usuario)== true) {
+            if (user.equals(usuario) == true) {
                 validacion = 1;
             }
         }
@@ -67,7 +67,7 @@ public class ControlSistema<seleccion> {
                     menuContratacion(iniAvi, iniUser, iniVue, cliente);
                     break;
                 case 2:
-                    //MENU CANCELAR
+                    cancelarVuelo(iniVue,cliente);
                     break;
                 case 3:
                     //MENU INFORMACION
@@ -202,8 +202,9 @@ public class ControlSistema<seleccion> {
             }
         }*/
 
-        /*Vuelos nuevo = new Vuelos();
-        nuevo = new Vuelos(selFecha, acompañantes, cliente, selAvion, nuevo.ContarKm(nuevo.getOrigen(), nuevo.getDestino()),origen elegido,Destino elegido);
+        Vuelos nuevo = new Vuelos();
+        nuevo = new Vuelos(selFecha, acompañantes, cliente, selAvion, nuevo.ContarKm(nuevo.getOrigen(), nuevo.getDestino()),
+                /*origen elegido*/,/*Destino elegido*/);
         for (Vuelos aux : iniVue) {
             if (aux.equals(nuevo) == true) {
                 System.out.println("Hay un vuelo programado,elija otro dia");
@@ -218,12 +219,59 @@ public class ControlSistema<seleccion> {
         }
 
 
-    }*/
+    }
+///MENU DE CANCELACION
+    public static int borrarVuelo(List<Vuelos> iniVue,Usuario cliente,LocalDateTime fecha) {
+        LocalDateTime fechaEnElMomento = LocalDateTime.now();
+        boolean dictador = fecha.isAfter(fechaEnElMomento);
+        int i = 0;int funka=0;
+        if (dictador == true) {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Desea realmente cancelar el vuelo? \n ");
+            System.out.println("Presion 1 para continuar");
+            System.out.println("Presion 0 para cancelar ");
+            int confirmacion = sc.nextInt();
+            if (confirmacion == 1) {
+                for (Vuelos vl : iniVue) {
+                    if (vl.getUsuario().equals(cliente)==true) {
+                        if (vl.getFecha().compareTo(fecha) == 0) {
+                            iniVue.remove(i);
+                            funka =1;
+                        }
+                    }
+                    i++;
+                }
+            }
+        }
+        return funka;
+    }
 
-   /* public static void cancelarVuelo(List<Vuelos> iniVue,Usuario cliente){
-        System.out.println("Ingrese codigo de reserva para esto:");
-    }*/
+    public static void cancelarVuelo(List<Vuelos> iniVue,Usuario cliente){
+        Scanner sc = new Scanner(System.in);
+        int mes = 0, dia = 0, hora = 0, minuto = 0;
+        char resp;
+        System.out.println("-MENU DE CANCELACION DE VUELO");
+        System.out.println("-INGRESE A CONTINUACION LOS SIGUIENTES DATOS DE MANERA NUMERICA-");
+        System.out.println("EJEMPLO: MES 1 = ENERO,MES 2 = FEBRERO");
+        System.out.println("INGRESE MES:");
+        mes = sc.nextInt();
+        System.out.println("INGRESE DIA(CORRESPONDER FINALES EN CADA MES,SEA 30 O 31 EN CUENTA):");
+        dia = sc.nextInt();
+        System.out.println("INGRESE HORA(FORMATO 24HS):");
+        hora = sc.nextInt();
+        System.out.println("INGRESE MINUTO(NO SUPERAR 59):");
+        minuto = sc.nextInt();
+        LocalDateTime borrar = LocalDateTime.of(2020,mes,dia,hora,minuto);
+        int funka = borrarVuelo(iniVue,cliente,borrar);
+        if(funka == 1 ){
+            System.out.println("Vuelo removido. \n Desea remover otro vuelo? S/N");
+            int op = sc.next().charAt(0);
+            if(op =='s'){
+                cancelarVuelo(iniVue,cliente);
+            }
+        }
+    }
 
-
-}
+///MENU DE INFORMACION
+public void
 }

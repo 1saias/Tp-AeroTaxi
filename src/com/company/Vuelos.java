@@ -212,7 +212,7 @@ public class Vuelos {
 
 
     ///
-    public void CancelarVuelo(LocalDateTime fecha, List<Vuelos> iniVue,Usuario cliente) {
+   /* public void CancelarVuelo(List<Vuelos> iniVue,Usuario cliente,LocalDateTime fecha) {
         LocalDateTime fechaEnElMomento = LocalDateTime.now();
         boolean dictador = fecha.isAfter(fechaEnElMomento);
         int i = 0;
@@ -237,7 +237,7 @@ public class Vuelos {
 
 
 
-    /*public int comprobacionfecha(ArrayList<Vuelos> vuelos, LocalDateTime seleccion) {
+    public int comprobacionfecha(ArrayList<Vuelos> vuelos, LocalDateTime seleccion) {
         int i = 0;
         for (Vuelos auxv : vuelos) {
             if (seleccion.compareTo(auxv.fecha) == 0) {
@@ -245,9 +245,9 @@ public class Vuelos {
             }
         }
         return i;
-    }*/
+    }
 
-    /*public void mostrarAvionesDisponibles(ArrayList<Aviones> flota, Aviones seleccion) {
+    public void mostrarAvionesDisponibles(ArrayList<Aviones> flota, Aviones seleccion) {
         for (Aviones avion : flota) {
             if (avion.getReservado() == 0) {
                 if (avion instanceof Bronze) {
@@ -274,6 +274,8 @@ public class Vuelos {
         }
         return validacion;
     }*/
+
+
 
 }
 
