@@ -356,7 +356,7 @@ public class ControlSistema {
             System.out.println("Gold es la mejor categoria");
         }else{
         if(bronze == gold && silver == gold){
-            System.out.println("Las tres categorias son las mejores e iguales");
+            System.out.println("Las tres categorias son las mejores");
                                     }
                                 }
                             }

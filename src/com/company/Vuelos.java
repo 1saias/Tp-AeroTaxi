@@ -37,7 +37,7 @@ public class Vuelos {
         this.aeronave.setReservado(1);
         this.importe = CalcularCostoTotal(kilometros, aeronave, acompañantes);
     }
-
+ ///Mostrar
     @Override
     public String toString() {
         return "Vuelos{" +
@@ -114,7 +114,6 @@ public class Vuelos {
         return i;
     }
 
-
     public int validarUsuario(List<Usuario> iniUser, Usuario cliente) {
         int validacion = 0;
         for (Usuario user : iniUser) {
@@ -124,26 +123,6 @@ public class Vuelos {
         }
         return validacion;
     }
-
-    ///MOSTRAR
-    /*public void mostrarAvionesDisponibles(ArrayList<Aviones> flota, Aviones seleccion) {
-        for (Aviones avion : flota) {
-            if (avion.getReservado() == 0) {
-                if (avion instanceof Bronze) {
-                    System.out.println(avion.toString());
-                } else {
-                    if (avion instanceof Silver) {
-                        System.out.println(avion.toString());
-                    } else {
-                        if (avion instanceof Gold) {
-                            System.out.println(avion.toString());
-                        }
-                    }
-                }
-            }
-        }
-    }*/
-
 
     //SET AND GET
     public void setFecha(LocalDateTime fecha) {
@@ -209,74 +188,6 @@ public class Vuelos {
     public Origen getOrigen() {
         return origen;
     }
-
-
-    ///
-   /* public void CancelarVuelo(List<Vuelos> iniVue,Usuario cliente,LocalDateTime fecha) {
-        LocalDateTime fechaEnElMomento = LocalDateTime.now();
-        boolean dictador = fecha.isAfter(fechaEnElMomento);
-        int i = 0;
-        if (dictador == true) {
-            Scanner sc = new Scanner(System.in);
-            System.out.println("Desea realmente cancelar el vuelo? \n ");
-            System.out.println("Presion 1 para continuar");
-            System.out.println("Presion 0 para cancelar ");
-            int confirmacion = sc.nextInt();
-            if (confirmacion == 1) {
-                for (Vuelos vl : iniVue) {
-                    if (vl.usuario.equals(cliente) == true) {
-                        if (vl.fecha.compareTo(fecha) == 0) {
-                            iniVue.remove(i);
-                        }
-                    }
-                    i++;
-                }
-            }
-        }
-    }
-
-
-
-    public int comprobacionfecha(ArrayList<Vuelos> vuelos, LocalDateTime seleccion) {
-        int i = 0;
-        for (Vuelos auxv : vuelos) {
-            if (seleccion.compareTo(auxv.fecha) == 0) {
-                i = 1;
-            }
-        }
-        return i;
-    }
-
-    public void mostrarAvionesDisponibles(ArrayList<Aviones> flota, Aviones seleccion) {
-        for (Aviones avion : flota) {
-            if (avion.getReservado() == 0) {
-                if (avion instanceof Bronze) {
-                    System.out.println(avion.toString());
-                } else {
-                    if (avion instanceof Silver) {
-                        System.out.println(avion.toString());
-                    } else {
-                        if (avion instanceof Gold) {
-                            System.out.println(avion.toString());
-                        }
-                    }
-                }
-            }
-        }
-    }
-
-    public int validarUsuario(ArrayList<Usuario> usuarios, Usuario usuario) {
-        int validacion = 0;
-        for (Usuario user : usuarios) {
-            if (user.equals(usuario) == true) {
-                validacion = 1;
-            }
-        }
-        return validacion;
-    }*/
-
-
-
 }
 
 
