@@ -41,10 +41,8 @@ public class Main {
                 }
             }
         }
-<<<<<<< HEAD
 
         for(Aviones flotita : Flota){
-=======
         */
         /*for(Aviones flotita : Flota){
             if(flotita instanceof Bronze){
@@ -65,7 +63,6 @@ public class Main {
                     i=1;
         }
         System.out.println(i);*/
-
 
 
 

@@ -2,7 +2,7 @@ package com.company.Aeronaves;
 
 import com.company.Motor;
 
-public abstract class Aviones {
+public class Aviones {
     private String nombre;
     private int numSerie;
     private float capCombustible;
@@ -77,6 +77,7 @@ public abstract class Aviones {
         this.reservado = reservado;
     }
 
+    public Aviones(){}
 
     public Aviones(String nombre,int numSerie,float capCombustible, float costoXKM, int capMXPasajeros, double velMX, Motor motor,int tarifa){
         this.nombre = nombre;

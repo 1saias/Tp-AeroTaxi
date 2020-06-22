@@ -14,45 +14,62 @@ import java.time.chrono.ChronoLocalDate;
 import java.util.Scanner;
 
 public class Vuelos {
-///ATRIBUTOS
+    ///ATRIBUTOS
     private LocalDateTime fecha;
     private int acompañantes;
-    private int kilometros=0;
+    private int kilometros = 0;
     private Usuario usuario;
     private Aviones aeronave;
     private float importe;
     private Destino destino;
     private Origen origen;
 
-///CONSTRUCTOR
-    public Vuelos(LocalDateTime fecha, int acompañantes, int kilomentros, Usuario usuario, Aviones aeronave, Origen origen, Destino destinos) {
+    ///CONSTRUCTOR
+    public Vuelos(){}
+    public Vuelos(LocalDateTime fecha, int acompañantes, int kilometros, Usuario usuario, Aviones aeronave, Origen origen, Destino destinos) {
         this.fecha = fecha;
         this.acompañantes = acompañantes;
-        this.kilometros = ContarKm(origen,destinos);
+        this.kilometros = ContarKm(origen, destinos);
         this.usuario = usuario;
         this.aeronave = aeronave;
         this.origen = origen;
         this.destino = destinos;
         this.aeronave.setReservado(1);
-        this.importe = CalcularCostoTotal(kilomentros, aeronave, acompañantes);
+        this.importe = CalcularCostoTotal(kilometros, aeronave, acompañantes);
     }
 
-//ENUM
+    @Override
+    public String toString() {
+        return "Vuelos{" +
+                "fecha=" + fecha +
+                ", acompañantes=" + acompañantes +
+                ", kilometros=" + kilometros +
+                ", usuario=" + usuario +
+                ", aeronave=" + aeronave +
+                ", importe=" + importe +
+                ", destino=" + destino +
+                ", origen=" + origen +
+                '}';
+    }
+
+    //ENUM
     public enum Destino {
         Cordoba, Montevideo, Santiago;
 
     }
+
     public enum Origen {
         BsAs, Cordoba, Montevideo;
     }
-//METODOS OBTENCION
-    public float CalcularCostoTotal(int kilomentros, Aviones aeronave, int acompañantes) {
+
+    //METODOS OBTENCION
+    public static float CalcularCostoTotal(int kilomentros, Aviones aeronave, int acompañantes) {
         float total = (kilomentros * aeronave.getCostoXKM()) +
                 ((acompañantes + 1) * 3500) + (aeronave.getTarifa());
         return total;
     }
 
-    public int ContarKm(Origen origen,Destino destino) {
+    public int ContarKm(Origen origen, Destino destino) {
         if (origen == Origen.BsAs) {
             if (destino == Destino.Cordoba) {
                 kilometros = 695;
@@ -70,13 +87,13 @@ public class Vuelos {
             if (destino == Destino.Santiago) {
                 kilometros = 1050;
             }
-        }else  if (origen == Origen.Montevideo && destino == Destino.Santiago){
+        } else if (origen == Origen.Montevideo && destino == Destino.Santiago) {
             kilometros = 2100;
         }
         return kilometros;
     }
 
-//COMPARACION Y VALIDACION
+    //COMPARACION Y VALIDACION
     @Override
     public boolean equals(Object obj) {
         if (obj == this) return true;
@@ -107,7 +124,7 @@ public class Vuelos {
         }
         return validacion;
     }
-<<<<<<< HEAD
+
     ///MOSTRAR
     /*public void mostrarAvionesDisponibles(ArrayList<Aviones> flota, Aviones seleccion) {
         for (Aviones avion : flota) {
@@ -127,27 +144,12 @@ public class Vuelos {
         }
     }*/
 
-    @Override
-    public String toString() {
-        return "Vuelos{" +
-                "fecha=" + fecha +
-                ", acompañantes=" + acompañantes +
-                ", kilometros=" + kilometros +
-                ", importe=" + importe +
-                ", destino=" + destino +
-                ", origen=" + origen +
-                ", aeronave=" + aeronave +
-                ", usuario=" + usuario +
-                '}';
-    }
 
     //SET AND GET
-=======
-    /// Setters y Getters
->>>>>>> bea949bc1e041fbe5a683b003219fb06f31fc5e1
     public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
+
     public LocalDateTime getFecha() {
         return fecha;
     }
@@ -155,6 +157,7 @@ public class Vuelos {
     public void setAcompañantes(int acompañantes) {
         this.acompañantes = acompañantes;
     }
+
     public int getAcompañantes() {
         return acompañantes;
     }
@@ -162,6 +165,7 @@ public class Vuelos {
     public void setKilometros(int kilometros) {
         this.kilometros = kilometros;
     }
+
     public int getKilometros() {
         return kilometros;
     }
@@ -169,6 +173,7 @@ public class Vuelos {
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
+
     public Usuario getUsuario() {
         return usuario;
     }
@@ -176,6 +181,7 @@ public class Vuelos {
     public void setAeronave(Aviones aeronave) {
         this.aeronave = aeronave;
     }
+
     public Aviones getAeronave() {
         return aeronave;
     }
@@ -183,6 +189,7 @@ public class Vuelos {
     public float getImporte() {
         return importe;
     }
+
     public void setImporte(float importe) {
         this.importe = importe;
     }
@@ -190,6 +197,7 @@ public class Vuelos {
     public void setDestino(Destino destino) {
         this.destino = destino;
     }
+
     public Destino getDestino() {
         return destino;
     }
@@ -197,57 +205,33 @@ public class Vuelos {
     public void setOrigen(Origen origen) {
         this.origen = origen;
     }
+
     public Origen getOrigen() {
         return origen;
     }
-<<<<<<< HEAD
-}
-=======
-    public float getImporte() {
-        return importe;
-    }
 
-    public void setImporte(float importe) {
-        this.importe = importe;
-    }
+
     ///
-    public void CancelarVuelo(LocalDateTime fecha,Aviones aeronave){
+    public void CancelarVuelo(LocalDateTime fecha, Aviones aeronave) {
         LocalDateTime fechaEnElMomento = LocalDateTime.now();
         boolean dictador = fecha.isAfter(fechaEnElMomento);
-                if(dictador == true ){
+        if (dictador == true) {
             Scanner sc = new Scanner(System.in);
             System.out.println("Desea realmente cancelar el vuelo? \n ");
             System.out.println("Presion 1 para continuar");
             System.out.println("Presion 0 para cancelar ");
             int confirmacion = sc.nextInt();
-            if(confirmacion == 1)
-            {
+            if (confirmacion == 1) {
                 aeronave.setReservado(0);
-             }
-         }
+            }
+        }
 
     }
 
 
-    public float CalcularCostoTotal(int kilomentros, Aviones aeronave, int acompañantes) {
-        float total = (kilomentros * aeronave.getCostoXKM()) +
-                ((acompañantes + 1) * 3500) + (aeronave.getTarifa());
-        return total;
-    }
 
 
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == this) return true;
-        if (!(obj instanceof Vuelos)) return false;
-        Vuelos vl = (Vuelos) obj;
-        return this.fecha.equals(vl.fecha) && this.acompañantes == vl.acompañantes &&
-                this.kilometros == vl.kilometros && this.usuario.equals(usuario) &&
-                this.aeronave.equals(aeronave);
-    }
-
-    public int comprobacionfecha(ArrayList<Vuelos> vuelos, LocalDateTime seleccion) {
+    /*public int comprobacionfecha(ArrayList<Vuelos> vuelos, LocalDateTime seleccion) {
         int i = 0;
         for (Vuelos auxv : vuelos) {
             if (seleccion.compareTo(auxv.fecha) == 0) {
@@ -255,9 +239,9 @@ public class Vuelos {
             }
         }
         return i;
-    }
+    }*/
 
-    public void mostrarAvionesDisponibles(ArrayList<Aviones> flota, Aviones seleccion) {
+    /*public void mostrarAvionesDisponibles(ArrayList<Aviones> flota, Aviones seleccion) {
         for (Aviones avion : flota) {
             if (avion.getReservado() == 0) {
                 if (avion instanceof Bronze) {
@@ -283,33 +267,8 @@ public class Vuelos {
             }
         }
         return validacion;
-    }
-
-
-    @Override
-    public String toString()
-        {
-
-                return "Vuelos:" +
-                        "fecha=" + fecha +
-                        ", acompañantes=" + acompañantes +
-                        ", kilometros=" + kilometros +
-                        ", importe=" + importe +
-                        ", destino=" + destino +
-                        ", origen=" + origen +
-                        ", aeronave=" + aeronave +
-                        ", usuario=" + usuario +
-                        '\n';
-        }
-
-    }
-
-  /* public int TotalDeKm(Ciudades origen,Destinos destinos) {
-        if (origen.equals(destinos) )
-        {
-            System.out.println("Ingrese un destino valido");
-
-        }
     }*/
 
->>>>>>> bea949bc1e041fbe5a683b003219fb06f31fc5e1
+}
+
+

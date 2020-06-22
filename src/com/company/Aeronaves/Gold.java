@@ -7,7 +7,7 @@ public class Gold extends Aviones{
     private String platillo;
     private String wifi;
 
-    public Gold(String nombre, int numSerie, float capCombustible, float costoXKM, int capMXPasajeros, double velMX, Motor motor, int tarifa) {
+    public Gold(String nombre, int numSerie, float capCombustible, float costoXKM, int capMXPasajeros, double velMX, Motor motor) {
         super(nombre, numSerie, capCombustible, costoXKM, capMXPasajeros, velMX, motor,6000);
         this.platillo = platillo;
         this.wifi = wifi;
