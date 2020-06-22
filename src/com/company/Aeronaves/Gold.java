@@ -24,6 +24,6 @@ public class Gold extends Aviones{
 
     @Override
     public String toString() {
-        return "Gold: "+super.toString()+"Platillo: "+getPlatillo()+", Wifi: "+getPlatillo();
+        return "Gold: "+super.toString()+"Platillo: "+getPlatillo()+", Wifi: "+getWifi();
     }
 }
