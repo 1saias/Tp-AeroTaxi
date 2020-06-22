@@ -4,6 +4,7 @@ import com.company.Aeronaves.*;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class Main {
@@ -13,12 +14,17 @@ public class Main {
         Usuario Pipo = new Usuario("Pedro","Lopez",62987634,58);
         Bronze stratoCosta = new Bronze(55f,150f,30,500f,Motor.AHelice);
         Silver Piderosta = new Silver(79F,280F,80,600F,Motor.AReaccion,Menu.eleccion9);
-        Vuelos directorio1 = new Vuelos(LocalDateTime.of(2020,6,22,23,15),10,230,Pepe,Piderosta, Vuelos.Origen.BsAs, Vuelos.Destino.Cordoba);
-        Vuelos directorio2 = new Vuelos(LocalDateTime.of(2020,6,21,20,15),10,230,Pepe,stratoCosta, Vuelos.Origen.BsAs, Vuelos.Destino.Cordoba);
-        List<Aviones> flota = new ArrayList<>();
-        flota.add(stratoCosta);
-        flota.add(Piderosta);
-        System.out.println(directorio1);
+        Gold Goldi = new Gold(100F,532F,20,700F,Motor.APropulsion,Menu.eleccion2,"Probablemente");
+        Vuelos directorio1 = new Vuelos(LocalDateTime.of(2020,6,22,23,15),10,230,Pepe,Piderosta, Vuelos.Origen.BsAs, Vuelos.Destino.Montevideo);
+        Vuelos directorio2 = new Vuelos(LocalDateTime.of(2020,6,21,20,15),10,230,Pipo,stratoCosta, Vuelos.Origen.BsAs, Vuelos.Destino.Cordoba);
+        List<Vuelos> flota = new LinkedList<>();
+        flota.add(directorio1);
+        flota.add(directorio2);
+        directorio1.CancelarVuelo(directorio1.getFecha(),directorio1.getAeronave());
+
+        System.out.println(directorio1.getFecha());
+        System.out.println(LocalDateTime.now());
+        System.out.println();
         /*
         for(Aviones avion : flota){
             if(avion.getReservado() == 1){

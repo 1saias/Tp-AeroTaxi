@@ -5,9 +5,13 @@ import com.company.Aeronaves.Bronze;
 import com.company.Aeronaves.Gold;
 import com.company.Aeronaves.Silver;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
+import java.time.chrono.ChronoLocalDate;
+import java.util.Scanner;
 
 public class Vuelos {
     private LocalDateTime fecha;
@@ -64,7 +68,7 @@ public class Vuelos {
     public enum Origen {
         BsAs, Cordoba, Montevideo;
     }
-
+    /// Setters y Getters
     public void setFecha(LocalDateTime fecha) {
         this.fecha = fecha;
     }
@@ -121,6 +125,30 @@ public class Vuelos {
     public Origen getOrigen() {
         return origen;
     }
+    public float getImporte() {
+        return importe;
+    }
+
+    public void setImporte(float importe) {
+        this.importe = importe;
+    }
+    ///
+    public void CancelarVuelo(LocalDateTime fecha,Aviones aeronave){
+        LocalDateTime fechaEnElMomento = LocalDateTime.now();
+        boolean dictador = fecha.isAfter(fechaEnElMomento);
+                if(dictador == true ){
+            Scanner sc = new Scanner(System.in);
+            System.out.println("Desea realmente cancelar el vuelo? \n ");
+            System.out.println("Presion 1 para continuar");
+            System.out.println("Presion 0 para cancelar ");
+            int confirmacion = sc.nextInt();
+            if(confirmacion == 1)
+            {
+                aeronave.setReservado(0);
+             }
+         }
+
+    }
 
 
     public float CalcularCostoTotal(int kilomentros, Aviones aeronave, int acompañantes) {
@@ -129,13 +157,7 @@ public class Vuelos {
         return total;
     }
 
-    public float getImporte() {
-        return importe;
-    }
 
-    public void setImporte(float importe) {
-        this.importe = importe;
-    }
 
     @Override
     public boolean equals(Object obj) {
@@ -185,18 +207,23 @@ public class Vuelos {
         return validacion;
     }
 
+
     @Override
-    public String toString() {
-        return "Vuelos{" +
-                "fecha=" + fecha +
-                ", acompañantes=" + acompañantes +
-                ", kilometros=" + kilometros +
-                ", importe=" + importe +
-                ", destino=" + destino +
-                ", origen=" + origen +
-                ", aeronave=" + aeronave +
-                ", usuario=" + usuario +
-                '}';
+    public String toString()
+        {
+
+                return "Vuelos:" +
+                        "fecha=" + fecha +
+                        ", acompañantes=" + acompañantes +
+                        ", kilometros=" + kilometros +
+                        ", importe=" + importe +
+                        ", destino=" + destino +
+                        ", origen=" + origen +
+                        ", aeronave=" + aeronave +
+                        ", usuario=" + usuario +
+                        '\n';
+        }
+
     }
 
   /* public int TotalDeKm(Ciudades origen,Destinos destinos) {
@@ -206,4 +233,4 @@ public class Vuelos {
 
         }
     }*/
-}
+
