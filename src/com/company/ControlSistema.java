@@ -41,7 +41,7 @@ public class ControlSistema<seleccion> {
     public static int validarUsuario(List<Usuario> usuarios, Usuario usuario) {
         int validacion = 0;
         for (Usuario user : usuarios) {
-            if (user.equals(usuario) == true) {
+            if (user.equals(usuario)== true) {
                 validacion = 1;
             }
         }
@@ -202,9 +202,8 @@ public class ControlSistema<seleccion> {
             }
         }*/
 
-        Vuelos nuevo = new Vuelos();
-        nuevo = new Vuelos(selFecha, acompañantes, cliente, selAvion, nuevo.ContarKm(nuevo.getOrigen(), nuevo.getDestino()),
-                /*origen elegido*/,/*Destino elegido*/);
+        /*Vuelos nuevo = new Vuelos();
+        nuevo = new Vuelos(selFecha, acompañantes, cliente, selAvion, nuevo.ContarKm(nuevo.getOrigen(), nuevo.getDestino()),origen elegido,Destino elegido);
         for (Vuelos aux : iniVue) {
             if (aux.equals(nuevo) == true) {
                 System.out.println("Hay un vuelo programado,elija otro dia");
@@ -219,11 +218,12 @@ public class ControlSistema<seleccion> {
         }
 
 
-    }
+    }*/
 
-    public static void cancelarVuelo(List<Vuelos> iniVue,Usuario cliente){
+   /* public static void cancelarVuelo(List<Vuelos> iniVue,Usuario cliente){
         System.out.println("Ingrese codigo de reserva para esto:");
-    }
+    }*/
 
 
+}
 }
