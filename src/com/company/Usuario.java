@@ -1,10 +1,13 @@
 package com.company;
 
+import java.util.List;
+
 public class Usuario {
     private String nombre;
     private String apellido;
     private int dni;
     private int edad;
+    private List<Vuelos> vuelosList;
 
 ///CONSTRUCTOR
     public Usuario(String nombre,String apellido,int dni,int edad){
@@ -61,5 +64,11 @@ public void setNombre(String nombre) {
         return this.edad;
     }
 
+    public List<Vuelos> getVuelosList() {
+        return vuelosList;
+    }
+    public void setVuelosList(List<Vuelos> vuelosList) {
+        this.vuelosList = vuelosList;
+    }
 }
 

@@ -64,10 +64,10 @@ public class ControlSistema {
             op = sc.nextInt();
             switch (op) {
                 case 1:
-                    menuContratacion(iniAvi, iniUser, iniVue, cliente);
+                    iniVue=menuContratacion(iniAvi, iniUser, iniVue, cliente);
                     break;
                 case 2:
-                    cancelarVuelo(iniVue,cliente);
+                    iniVue = cancelarVuelo(iniVue,cliente);
                     break;
                 case 3:
                     //MENU INFORMACION
@@ -159,7 +159,7 @@ public class ControlSistema {
         mostrarAvionesDisponibles(iniAvi, iniVue, acompañante, seleccionado);
         System.out.println("Ingrese el numero de serie del avion que desee seleccionar  \n" +
                 "En caso de no ver ningun avion(no se pudo encontrar uno con sus requerimientos) " +
-                "o de no estar satisfecho con lo mostrado," +
+                "o de no estar satisfecho con lo mostrado" +
                 "Ingrese 0 para volver a la seleccion de fechas");
         int numSer = sc.nextInt();
         if (numSer != 0) {
@@ -175,7 +175,7 @@ public class ControlSistema {
     }
 
     ///MENU DE CONTRATACION Y CREACION DEL VUELO
-    public static void menuContratacion(List<Aviones> iniAvi, List<Usuario> iniUser,
+    public static List<Vuelos> menuContratacion(List<Aviones> iniAvi, List<Usuario> iniUser,
                                         List<Vuelos> iniVue, Usuario cliente) {
         Scanner sc = new Scanner(System.in);
         char resp;
@@ -208,7 +208,7 @@ public class ControlSistema {
         for (Vuelos aux : iniVue) {
             if (aux.equals(nuevo) == true) {
                 System.out.println("Hay un vuelo programado,elija otro dia");
-                menuContratacion(iniAvi, iniUser, iniVue, cliente);
+                iniVue = menuContratacion(iniAvi, iniUser, iniVue, cliente);
             }
             System.out.println(nuevo.toString());
             System.out.println("Su proceso fue satifactorio,desea confirmar S/N");
@@ -218,10 +218,10 @@ public class ControlSistema {
             }
         }
 
-
+    return iniVue;
     }
 ///MENU DE CANCELACION
-    public static int borrarVuelo(List<Vuelos> iniVue,Usuario cliente,LocalDateTime fecha) {
+    public static List<Vuelos> borrarVuelo(List<Vuelos> iniVue, Usuario cliente, LocalDateTime fecha) {
         LocalDateTime fechaEnElMomento = LocalDateTime.now();
         boolean dictador = fecha.isAfter(fechaEnElMomento);
         int i = 0;int funka=0;
@@ -243,10 +243,11 @@ public class ControlSistema {
                 }
             }
         }
-        return funka;
+        System.out.println("Vuelo eliminado Satisfactoriamente");
+        return iniVue;
     }
 
-    public static void cancelarVuelo(List<Vuelos> iniVue,Usuario cliente){
+    public static List<Vuelos> cancelarVuelo(List<Vuelos> iniVue,Usuario cliente){
         Scanner sc = new Scanner(System.in);
         int mes = 0, dia = 0, hora = 0, minuto = 0;
         char resp;
@@ -262,16 +263,62 @@ public class ControlSistema {
         System.out.println("INGRESE MINUTO(NO SUPERAR 59):");
         minuto = sc.nextInt();
         LocalDateTime borrar = LocalDateTime.of(2020,mes,dia,hora,minuto);
-        int funka = borrarVuelo(iniVue,cliente,borrar);
-        if(funka == 1 ){
-            System.out.println("Vuelo removido. \n Desea remover otro vuelo? S/N");
+        iniVue = borrarVuelo(iniVue,cliente,borrar);
+        System.out.println("Desea remover otro vuelo? S/N");
             int op = sc.next().charAt(0);
             if(op =='s'){
-                cancelarVuelo(iniVue,cliente);
+                iniVue=cancelarVuelo(iniVue,cliente);
+            }
+        return iniVue;
+    }
+
+///MENU DE INFORMACION
+    public static void menuInformacion(List<Vuelos> inivue){
+        Scanner sc = new Scanner(System.in);int op= 0,mes = 0, dia = 0, hora = 0, minuto = 0;
+        System.out.println("-BIENVENIDO AL MENU DE INFORMACION-\n " +
+                            "Seleccione una de las siguientes opciones:\n " +
+                            "1.Mostrar vuelos segun una fecha\n" +
+                            "2.Mostrar Clientes";
+                op= sc.nextInt();
+                switch (op){
+                    case 1:
+                        System.out.println("-INGRESE A CONTINUACION LOS SIGUIENTES DATOS DE MANERA NUMERICA-");
+                        System.out.println("EJEMPLO: MES 1 = ENERO,MES 2 = FEBRERO");
+                        System.out.println("INGRESE MES:");
+                        mes = sc.nextInt();
+                        System.out.println("INGRESE DIA(CORRESPONDER FINALES EN CADA MES,SEA 30 O 31 EN CUENTA):");
+                        dia = sc.nextInt();
+                        System.out.println("INGRESE HORA(FORMATO 24HS):");
+                        hora = sc.nextInt();
+                        System.out.println("INGRESE MINUTO(NO SUPERAR 59):");
+                        minuto = sc.nextInt();
+                        LocalDateTime mostrar = LocalDateTime.of(2020,mes,dia,hora,minuto);
+                        mostrarVLSegunFecha(inivue,mostrar);
+                        break;
+                    case 2:
+
+
+                }
+
+
+    }
+
+    public static void mostrarVLSegunFecha(List<Vuelos> iniVue,LocalDateTime fecha){
+        for (Vuelos vl : iniVue){
+            if(vl.getFecha().compareTo(fecha)==0){
+                System.out.println(vl.toString());
             }
         }
     }
 
-///MENU DE INFORMACION
-public void
+    public static void mostrarClientes(List<Usuario> iniUser,List<Vuelos> iniVue){
+        int bronze=0,silver=0,gold=0;
+        System.out.println("-CLIENTES-");
+        for(Usuario us : iniUser){
+            System.out.println("===================================================================");
+            us.toString();
+            System.out.println("===================================================================");
+        }
+
+    }
 }
