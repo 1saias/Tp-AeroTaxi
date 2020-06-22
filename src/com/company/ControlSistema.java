@@ -273,12 +273,12 @@ public class ControlSistema {
     }
 
 ///MENU DE INFORMACION
-    public static void menuInformacion(List<Vuelos> inivue){
+    public static void menuInformacion(List<Vuelos> inivue,List<Usuario> iniUser){
         Scanner sc = new Scanner(System.in);int op= 0,mes = 0, dia = 0, hora = 0, minuto = 0;
         System.out.println("-BIENVENIDO AL MENU DE INFORMACION-\n " +
                             "Seleccione una de las siguientes opciones:\n " +
                             "1.Mostrar vuelos segun una fecha\n" +
-                            "2.Mostrar Clientes";
+                            "2.Mostrar Clientes");
                 op= sc.nextInt();
                 switch (op){
                     case 1:
@@ -296,11 +296,9 @@ public class ControlSistema {
                         mostrarVLSegunFecha(inivue,mostrar);
                         break;
                     case 2:
-
-
+                        mostrarClientes(iniUser,inivue);
+                        break;
                 }
-
-
     }
 
     public static void mostrarVLSegunFecha(List<Vuelos> iniVue,LocalDateTime fecha){
@@ -311,14 +309,61 @@ public class ControlSistema {
         }
     }
 
-    public static void mostrarClientes(List<Usuario> iniUser,List<Vuelos> iniVue){
-        int bronze=0,silver=0,gold=0;
+    public static void mostrarClientes(List<Usuario> iniUser,List<Vuelos> iniVue) {
         System.out.println("-CLIENTES-");
-        for(Usuario us : iniUser){
+        for (Usuario us : iniUser) {
+            int total = 0,bronze = 0, silver = 0, gold = 0;
             System.out.println("===================================================================");
             us.toString();
-            System.out.println("===================================================================");
+            for (Vuelos vl : iniVue) {
+                if (vl.getUsuario().getDni() == us.getDni()) {
+                    total += vl.getImporte();
+                if (vl.getAeronave() instanceof Bronze) {
+                    bronze++;
+                } else {
+                if (vl.getAeronave() instanceof Silver) {
+                    silver++;
+                } else {
+                if (vl.getAeronave() instanceof Gold) {
+                    gold++;
+                            }
+                        }
+                    }
+                }
+            }
+            mostrarMayor(bronze, silver, gold);
+            System.out.println("El importe total de todos los vuelos es: "+total);
+        }
+    }
+
+    public static void mostrarMayor(int bronze,int silver,int gold){
+        if(bronze > silver && bronze > gold){
+            System.out.println("Bronze es la mejor categoria");
+        }else{
+        if(bronze == silver && bronze > gold){
+            System.out.println("Bronze y Silver son las mejores categorias");
+        }else {
+        if(bronze > silver && bronze == gold){
+            System.out.println("Bronze y Gold son las mejores categorias");
+        }else {
+        if(bronze < silver && silver > gold){
+            System.out.println("Silver es la mejor categoria");
+        }else{
+        if(bronze < silver && silver == gold) {
+            System.out.println("Silver y Gold son las mejores categorias");
+        }else{
+        if(bronze < gold && silver < gold){
+            System.out.println("Gold es la mejor categoria");
+        }else{
+        if(bronze == gold && silver == gold){
+            System.out.println("Las tres categorias son las mejores e iguales");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
 
     }
-}

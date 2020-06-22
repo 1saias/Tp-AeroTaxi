@@ -45,7 +45,7 @@ public class Vuelos {
                 ", acompañantes=" + acompañantes +
                 ", kilometros=" + kilometros +
                 ", usuario=" + usuario +
-                ", aeronave=" + aeronave.toString() +
+                ", aeronave=" + aeronave.getClass().toString()+
                 ", importe=" + importe +
                 ", destino=" + destino +
                 ", origen=" + origen +
