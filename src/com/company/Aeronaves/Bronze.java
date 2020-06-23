@@ -15,4 +15,9 @@ public class Bronze extends Aviones {
     public String toString() {
         return "Bronze: "+super.toString();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
 }

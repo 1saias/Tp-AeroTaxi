@@ -26,6 +26,7 @@ public class Vuelos {
 
     ///CONSTRUCTOR
     public Vuelos(){}
+
     public Vuelos(LocalDateTime fecha, int acompañantes, Usuario usuario, Aviones aeronave, Origen origen, Destino destinos) {
         this.fecha = fecha;
         this.acompañantes = acompañantes;
@@ -34,7 +35,6 @@ public class Vuelos {
         this.aeronave = aeronave;
         this.origen = origen;
         this.destino = destinos;
-        this.aeronave.setReservado(1);
         this.importe = CalcularCostoTotal(kilometros, aeronave, acompañantes);
     }
  ///Mostrar

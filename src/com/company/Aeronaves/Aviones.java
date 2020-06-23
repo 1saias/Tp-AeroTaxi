@@ -1,6 +1,9 @@
 package com.company.Aeronaves;
 
 import com.company.Motor;
+import com.company.Usuario;
+
+import java.util.Objects;
 
 public class Aviones {
     private String nombre;
@@ -11,7 +14,6 @@ public class Aviones {
     private double velMX;          //En km/h
     private Motor motor;
     private int tarifa;
-    private int reservado =0;
 
 
     public String getNombre() {
@@ -70,12 +72,6 @@ public class Aviones {
         this.tarifa = tarifa;
     }
 
-    public int getReservado() {
-        return reservado;
-    }
-    public void setReservado(int reservado) {
-        this.reservado = reservado;
-    }
 
     public Aviones(){}
 
@@ -92,6 +88,26 @@ public class Aviones {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Aviones)) return false;
+        Aviones aviones = (Aviones) o;
+        return numSerie == aviones.numSerie &&
+                Float.compare(aviones.capCombustible, capCombustible) == 0 &&
+                Float.compare(aviones.costoXKM, costoXKM) == 0 &&
+                capMXPasajeros == aviones.capMXPasajeros &&
+                Double.compare(aviones.velMX, velMX) == 0 &&
+                tarifa == aviones.tarifa &&
+                Objects.equals(nombre, aviones.nombre) &&
+                motor == aviones.motor;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, numSerie, capCombustible, costoXKM, capMXPasajeros, velMX, motor, tarifa);
+    }
+
+    @Override
     public String toString() {
         return "Aviones{" +
                 "nombre='" + nombre + '\'' +
@@ -102,7 +118,6 @@ public class Aviones {
                 ", velMX=" + velMX +
                 ", motor=" + motor +
                 ", tarifa=" + tarifa +
-                ", reservado=" + reservado +
                 '}';
     }
 }

@@ -28,6 +28,8 @@ public class Main {
         Vuelos seriales3 = new Vuelos(fecha3,90,us2,bral, Vuelos.Origen.Montevideo, Vuelos.Destino.Santiago);
         Vuelos seriales4 = new Vuelos(fecha4,146,us3,villancio, Vuelos.Origen.BsAs, Vuelos.Destino.Santiago);
 
+
+
         List<Vuelos> iniVue = new LinkedList<>();
         iniVue.add(seriales1);  iniVue.add(seriales2);  iniVue.add(seriales3); iniVue.add(seriales4);
 
@@ -61,47 +63,30 @@ public class Main {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*
-
-
-        directorio1.CancelarVuelo(directorio1.getFecha(),directorio1.getAeronave());
-
-        System.out.println(directorio1.getFecha());
-        System.out.println(LocalDateTime.now());
-        System.out.println();
-
-        for(Aviones avion : flota){
-            if(avion.getReservado() == 1){
-                if(avion instanceof Bronze){
-                    System.out.println(avion.toString());
-                }else{
-                    if(avion instanceof Silver){
-                        System.out.println(avion.toString());
-                    }else{
-                        if(avion instanceof Gold){
-                            System.out.println(avion.toString());
-                        }
-                    }
-                }
-            }
+        /*or(Aviones av : iniAvi){
+            System.out.println(av.toString());
         }
 
-        *//*for(Aviones flotita : Flota){*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        for(Vuelos vl : iniVue){
+            System.out.println(vl.toString());
+        }*/
+
+
+        //*for(Aviones flotita : Flota){*/
 
         /*for(Aviones flotita : Flota){
             if(flotita instanceof Bronze){
@@ -122,6 +107,54 @@ public class Main {
                     i=1;
         }
         System.out.println(i);*/
+
+        /*LocalDateTime seleccion = LocalDateTime.of(2020,7,22,14,10);//LocalDateTime.of(2020,10,15,20,28);
+        int i=0;
+
+
+        if(fecha1.getMonth().compareTo(seleccion.getMonth())==0){
+            i=1;
+        }
+        System.out.println(i);
+
+        if(fecha1.getDayOfMonth()==seleccion.getDayOfMonth()){
+            i = 1;
+        }
+        System.out.println(i);
+
+        if(latita.getCapMXPasajeros()>= 80+1){
+            i=1;
+        }
+        System.out.println(i);*/
+
+        /*int acompañante = 80;
+        for (Aviones avion : iniAvi) {
+            for (Vuelos vuelo : iniVue) {
+                if (vuelo.getFecha().getMonth().compareTo(seleccion.getMonth()) == 0) {
+                    System.out.println("Si paso");
+                    if (vuelo.getFecha().getDayOfMonth() == seleccion.getDayOfMonth()) {
+                        System.out.println("Si paso");
+                        if (vuelo.getAeronave().getNombre().equalsIgnoreCase(avion.getNombre())==false) {
+                            System.out.println("Si paso");
+                            if (avion.getCapMXPasajeros() >= acompañante + 1) {
+                                if (avion instanceof Bronze) {
+                                    System.out.println(avion.toString());
+                                } else {
+                                    if (avion instanceof Silver) {
+                                        System.out.println(avion.toString());
+                                    } else {
+                                        if (avion instanceof Gold) {
+                                            System.out.println(avion.toString());
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }*/
+
 
 
 

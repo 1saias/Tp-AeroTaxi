@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class ControlSistema {
 
-    public static void inicializarSistema(List<Aviones> iniA,List<Usuario> iniU,List<Vuelos> iniV) {
+    public static void inicializarSistema(List<Aviones> iniA, List<Usuario> iniU, List<Vuelos> iniV) {
         List<Aviones> iniAvi = iniA;
         List<Usuario> iniUser = iniU;
         List<Vuelos> iniVue = iniV;
@@ -63,10 +63,10 @@ public class ControlSistema {
             op = sc.nextInt();
             switch (op) {
                 case 1:
-                    iniVue=menuContratacion(iniAvi, iniUser, iniVue, cliente);
+                    iniVue = menuContratacion(iniAvi, iniUser, iniVue, cliente);
                     break;
                 case 2:
-                    iniVue = cancelarVuelo(iniVue,cliente);
+                    iniVue = cancelarVuelo(iniVue, cliente);
                     break;
                 case 3:
                     //MENU INFORMACION
@@ -125,42 +125,49 @@ public class ControlSistema {
     }
 
     //SELECCION AVION
-    public static void mostrarAvionesDisponibles(List<Aviones> iniAvi, List<Vuelos> inivue,
-                                                 int acompañante, LocalDateTime seleccion) {
-        for (Aviones avion : iniAvi) {
-            for (Vuelos vuelo : inivue) {
-                if (vuelo.getFecha().getMonth().compareTo(seleccion.getMonth()) == 0) {
-                    if (vuelo.getFecha().getDayOfMonth() == seleccion.getDayOfMonth()) {
-                        if (iniAvi.equals(vuelo.getAeronave()) == false) {
-                            if (avion.getCapMXPasajeros() >= acompañante + 1) {
-                                if (avion instanceof Bronze) {
-                                    System.out.println(avion.toString());
-                                } else {
-                                    if (avion instanceof Silver) {
-                                        System.out.println(avion.toString());
-                                    } else {
-                                        if (avion instanceof Gold) {
-                                            System.out.println(avion.toString());
-                                        }
-                                    }
-                                }
-                            }
-                        }
+    public static int mostrarAvionesDispReserva(List<Aviones> iniAvi, List<Vuelos> iniVue,
+                                                int acompañante, LocalDateTime seleccion) {
+        int validacion = 0;
+        System.out.println(acompañante);
+        System.out.println(seleccion);
+        for (Vuelos vuelo : iniVue) {
+            for (Aviones avion : iniAvi) {
+                if (vuelo.getFecha().getMonth().compareTo(seleccion.getMonth()) == 0 &&
+                        vuelo.getFecha().getDayOfMonth() == seleccion.getDayOfMonth() &&
+                        !vuelo.getAeronave().getNombre().equals(avion.getNombre()) &&
+                        avion.getCapMXPasajeros() >= acompañante + 1) {
+                    if (avion instanceof Bronze ^ avion instanceof Silver ^ avion instanceof Gold) {
+                        System.out.println(avion.toString());
+                        validacion = 1;
                     }
                 }
             }
         }
+        return validacion;
     }
+
+    public static void mostrarAvionesGral(List<Aviones> iniAvi) {
+        for (Aviones avion : iniAvi) {
+            if (avion instanceof Bronze ^ avion instanceof Silver ^ avion instanceof Gold) {
+                System.out.println(avion.toString());
+            }
+        }
+    }
+
 
     public static Aviones seleccionAvion(List<Aviones> iniAvi, List<Vuelos> iniVue, List<Usuario> iniUser, int acompañante, LocalDateTime seleccionado, Usuario cliente) {
         Scanner sc = new Scanner(System.in);
         Aviones seleccion = new Aviones();
-        mostrarAvionesDisponibles(iniAvi, iniVue, acompañante, seleccionado);
+        int numSer = 0, validacion = 0;
+        validacion = mostrarAvionesDispReserva(iniAvi, iniVue, acompañante, seleccionado);
+        if (validacion == 1) {
+            mostrarAvionesGral(iniAvi);
+        }
         System.out.println("Ingrese el numero de serie del avion que desee seleccionar  \n" +
                 "En caso de no ver ningun avion(no se pudo encontrar uno con sus requerimientos) " +
                 "o de no estar satisfecho con lo mostrado" +
                 "Ingrese 0 para volver a la seleccion de fechas");
-        int numSer = sc.nextInt();
+        numSer = sc.nextInt();
         if (numSer != 0) {
             for (Aviones aux : iniAvi) {
                 if (aux.getNumSerie() == numSer) {
@@ -168,10 +175,55 @@ public class ControlSistema {
                 }
             }
         } else {
-            menuContratacion(iniAvi, iniUser, iniVue, cliente);
+            iniVue = menuContratacion(iniAvi, iniUser, iniVue, cliente);
         }
         return seleccion;
     }
+
+    public static Vuelos seleccionOrDest() {
+        Vuelos nuevo = new Vuelos();
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Ingrese el origen de su vuelo\n1- Buenos Aires \n2- Cordoba\n3- Montevideo\n");
+        int op = sc.nextInt();
+        switch (op) {
+            case 1:
+                nuevo.setOrigen(Vuelos.Origen.BsAs);
+                System.out.println("Ingrese el destino de su vuelo \n1-Cordoba \n2-Montevideo \n3-Santiago\n");
+                int destinoBSas = sc.nextInt();
+            if (destinoBSas == 1) {
+                nuevo.setDestino(Vuelos.Destino.Cordoba);
+            }
+            if (destinoBSas == 2) {
+                nuevo.setDestino(Vuelos.Destino.Montevideo);
+            }
+            if (destinoBSas == 3) {
+                nuevo.setDestino(Vuelos.Destino.Santiago);
+
+            }
+                break;
+            case 2:
+                nuevo.setOrigen(Vuelos.Origen.Cordoba);
+                System.out.println("Ingrese el destino de su vuelo \n1- Montevideo\n2- Santiago\n");
+                int destinoCordoba = sc.nextInt();
+            if (destinoCordoba == 1) {
+                nuevo.setDestino(Vuelos.Destino.Montevideo);
+            } else if (destinoCordoba == 2) {
+                nuevo.setDestino(Vuelos.Destino.Santiago);
+            }
+                break;
+
+            case 3:
+                nuevo.setOrigen(Vuelos.Origen.Montevideo);
+                System.out.println("Ingrese el destino de su vuelo\n1-Santiago\n");
+                int destinoMontevideo = sc.nextInt();
+            if (destinoMontevideo == 1) {
+                nuevo.setDestino(Vuelos.Destino.Santiago);
+            }
+                break;
+        }
+        return nuevo;
+    }
+
 
     ///MENU DE CONTRATACION Y CREACION DEL VUELO
     public static List<Vuelos> menuContratacion(List<Aviones> iniAvi, List<Usuario> iniUser, List<Vuelos> iniVue, Usuario cliente) {
@@ -179,82 +231,14 @@ public class ControlSistema {
         char resp;
         int acompañantes;
         Vuelos nuevo = new Vuelos();
+        nuevo = seleccionOrDest();
         System.out.println("-Bienvido al menu de contratacion " + cliente.getNombre() + "-");
-
         LocalDateTime selFecha = seleccionFecha(iniVue);
 
-        System.out.println("Ingrese el origen de su vuelo\n1- Buenos Aires \n2- Cordoba\n3- Montevideo\n");
-            int origen=sc.nextInt();
-            switch (origen){
-                case 1:
-                    nuevo.setOrigen(Vuelos.Origen.BsAs);
-
-                    System.out.println("Ingrese el destino de su vuelo \n1-Cordoba \n2-Montevideo \n3-Santiago\n");
-                    int destinoBSas = sc.nextInt();
-                    if (destinoBSas == 1){
-                        nuevo.setDestino(Vuelos.Destino.Cordoba);
-                    }
-                    if (destinoBSas == 2){
-                        nuevo.setDestino(Vuelos.Destino.Montevideo);
-                    }
-                    if (destinoBSas == 3){
-                        nuevo.setDestino(Vuelos.Destino.Santiago);
-
-                    }
-                    break;
-                    case 2:
-                    nuevo.setOrigen(Vuelos.Origen.Cordoba);
-
-                    System.out.println("Ingrese el destino de su vuelo \n");
-
-                    System.out.println("1- Montevideo\n");
-
-                    System.out.println("2- Santiago\n");
-
-                    int destinoCordoba = sc.nextInt();
-
-                    if (destinoCordoba == 1){
-
-                        nuevo.setDestino(Vuelos.Destino.Montevideo);
-
-                    }else if(destinoCordoba == 2){
-
-                        nuevo.setDestino(Vuelos.Destino.Santiago);
-                    }
-                    break;
-
-                    case 3:
-                        nuevo.setOrigen(Vuelos.Origen.Montevideo);
-
-                        System.out.println("Ingrese el destino de su vuelo\n");
-
-                        System.out.println("1-Santiago\n");
-
-                        int destinoMontevideo = sc.nextInt();
-
-                        if (destinoMontevideo == 1){
-
-                            nuevo.setDestino(Vuelos.Destino.Santiago);
-                        }
-
-                        break;
-
-            }
         System.out.println("Ingrese cantidad de acompañantes");
-
+        sc = new Scanner(System.in);
         acompañantes = sc.nextInt();
         Aviones selAvion = seleccionAvion(iniAvi, iniVue, iniUser, acompañantes, selFecha, cliente);
-        /*if (aux instanceof Bronze) {
-            Bronze selAvion = (Bronze) aux;
-        } else {
-        if (aux instanceof Silver) {
-                Silver selAvion = (Silver) aux;
-        } else {
-        if (aux instanceof Gold) {
-                    Gold selAvion = (Gold) aux;
-        }
-            }
-        }*/
 
         nuevo = new Vuelos(selFecha,acompañantes,cliente,selAvion,nuevo.getOrigen(),nuevo.getDestino());
         for (Vuelos aux : iniVue) {
@@ -276,7 +260,7 @@ public class ControlSistema {
     public static List<Vuelos> borrarVuelo(List<Vuelos> iniVue, Usuario cliente, LocalDateTime fecha) {
         LocalDateTime fechaEnElMomento = LocalDateTime.now();
         boolean dictador = fecha.isAfter(fechaEnElMomento);
-        int i = 0;int funka=0;
+        int i = 0;
         if (dictador == true) {
             Scanner sc = new Scanner(System.in);
             System.out.println("Desea realmente cancelar el vuelo? \n ");
@@ -288,7 +272,6 @@ public class ControlSistema {
                     if (vl.getUsuario().equals(cliente)==true) {
                         if (vl.getFecha().compareTo(fecha) == 0) {
                             iniVue.remove(i);
-                            funka =1;
                         }
                     }
                     i++;
