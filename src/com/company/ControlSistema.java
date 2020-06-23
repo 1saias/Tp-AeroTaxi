@@ -69,10 +69,10 @@ public class ControlSistema {
                     iniVue = cancelarVuelo(iniVue, cliente);
                     break;
                 case 3:
-                    //MENU INFORMACION
+                    menuInformacion(iniVue,iniUser);
                     break;
                 case 4:
-                    //TERMINARTODO
+                    System.exit(0);
                     break;
             }
             System.out.println("DESEA REALIZAR OTRA OPERACION? S/N");
