@@ -26,7 +26,7 @@ public class Vuelos {
 
     ///CONSTRUCTOR
     public Vuelos(){}
-    public Vuelos(LocalDateTime fecha, int acompañantes, int kilometros, Usuario usuario, Aviones aeronave, Origen origen, Destino destinos) {
+    public Vuelos(LocalDateTime fecha, int acompañantes, Usuario usuario, Aviones aeronave, Origen origen, Destino destinos) {
         this.fecha = fecha;
         this.acompañantes = acompañantes;
         this.kilometros = ContarKm(origen, destinos);
@@ -45,7 +45,7 @@ public class Vuelos {
                 ", acompañantes=" + acompañantes +
                 ", kilometros=" + kilometros +
                 ", usuario=" + usuario +
-                ", aeronave=" + aeronave.getClass().toString()+
+                ", aeronave=" + aeronave+
                 ", importe=" + importe +
                 ", destino=" + destino +
                 ", origen=" + origen +

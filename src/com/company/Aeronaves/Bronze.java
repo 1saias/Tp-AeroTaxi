@@ -6,7 +6,8 @@ import com.company.Motor;
 public class Bronze extends Aviones {
 
 
-    public Bronze(String nombre, int numSerie, float capCombustible, float costoXKM, int capMXPasajeros, double velMX, Motor motor) {
+    public Bronze(String nombre, int numSerie, float capCombustible, float costoXKM,
+                  int capMXPasajeros, double velMX, Motor motor) {
         super(nombre, numSerie, capCombustible, costoXKM, capMXPasajeros, velMX, motor, 3000);
     }
 

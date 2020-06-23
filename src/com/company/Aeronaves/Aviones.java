@@ -79,7 +79,8 @@ public class Aviones {
 
     public Aviones(){}
 
-    public Aviones(String nombre,int numSerie,float capCombustible, float costoXKM, int capMXPasajeros, double velMX, Motor motor,int tarifa){
+    public Aviones(String nombre,int numSerie,float capCombustible, float costoXKM, int capMXPasajeros,
+                   double velMX, Motor motor,int tarifa){
         this.nombre = nombre;
         this.numSerie = numSerie;
         this.capCombustible = capCombustible;

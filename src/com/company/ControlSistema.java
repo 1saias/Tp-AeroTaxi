@@ -10,11 +10,10 @@ import java.util.Scanner;
 
 public class ControlSistema {
 
-    public void inicializarSistema() {
-        ///crear archivos
-        List<Aviones> iniAVI = new ArrayList<>();
-        List<Usuario> iniUser = new ArrayList<>();
-        List<Vuelos> iniVue = new ArrayList<>();
+    public static void inicializarSistema(List<Aviones> iniA,List<Usuario> iniU,List<Vuelos> iniV) {
+        List<Aviones> iniAvi = iniA;
+        List<Usuario> iniUser = iniU;
+        List<Vuelos> iniVue = iniV;
         Scanner sc = new Scanner(System.in);
         System.out.println("Bienvenido al sistema STE AEROTAXIS");
         System.out.println("Por favor,ingresa los siguientes datos a pedir: ");
@@ -30,11 +29,11 @@ public class ControlSistema {
 
         if (validarUsuario(iniUser, cliente) == 1) {
             System.out.println("El usuario existe,el login fue exitoso");
-            inicializarMenuPrincSeleccion(iniAVI, iniUser, iniVue, cliente);
+            inicializarMenuPrincSeleccion(iniAvi, iniUser, iniVue, cliente);
         } else {
             System.out.println("El usuario no existe,entonces,su registro fue exitoso");
             iniUser.add(cliente);
-            inicializarMenuPrincSeleccion(iniAVI, iniUser, iniVue, cliente);
+            inicializarMenuPrincSeleccion(iniAvi, iniUser, iniVue, cliente);
         }
     }
 
@@ -87,6 +86,7 @@ public class ControlSistema {
         int i = 0;
         for (Vuelos auxv : vuelos) {
             if (seleccion.compareTo(auxv.getFecha()) == 0) {
+                ////Si no esta disponible,devuelve 1
                 i = 1;
             }
         }
@@ -109,7 +109,7 @@ public class ControlSistema {
         minuto = sc.nextInt();
 
         LocalDateTime seleccion = LocalDateTime.of(2020, mes, dia, hora, minuto);
-        if (comprobacionfecha(iniVue, seleccion) == 1) {
+        if (comprobacionfecha(iniVue, seleccion) == 0) {
             System.out.println("La fecha ingresada esta disponible \n Desea Confirmar? S/N");
             resp = sc.next().charAt(0);
             if (resp == 'S') {
@@ -183,29 +183,13 @@ public class ControlSistema {
 
         LocalDateTime selFecha = seleccionFecha(iniVue);
 
-        System.out.println("Ingrese el origen de su vuelo  \n");
-
-            System.out.println("1- Buenos Aires \n");
-
-            System.out.println("2- Cordoba\n");
-
-            System.out.println("3- Montevideo\n");
-
+        System.out.println("Ingrese el origen de su vuelo\n1- Buenos Aires \n2- Cordoba\n3- Montevideo\n");
             int origen=sc.nextInt();
-
             switch (origen){
                 case 1:
                     nuevo.setOrigen(Vuelos.Origen.BsAs);
 
-                    System.out.println("Ingrese el destino de su vuelo \n");
-
-                    System.out.println("1-Cordoba \n");
-
-                    System.out.println("2-Montevideo \n");
-
-                    System.out.println("3-Santiago\n");
-
-
+                    System.out.println("Ingrese el destino de su vuelo \n1-Cordoba \n2-Montevideo \n3-Santiago\n");
                     int destinoBSas = sc.nextInt();
                     if (destinoBSas == 1){
                         nuevo.setDestino(Vuelos.Destino.Cordoba);
@@ -272,7 +256,7 @@ public class ControlSistema {
             }
         }*/
 
-
+        nuevo = new Vuelos(selFecha,acompañantes,cliente,selAvion,nuevo.getOrigen(),nuevo.getDestino());
         for (Vuelos aux : iniVue) {
             if (aux.equals(nuevo) == true) {
                 System.out.println("Hay un vuelo programado,elija otro dia");
