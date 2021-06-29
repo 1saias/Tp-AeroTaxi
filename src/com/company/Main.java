@@ -1,8 +1,11 @@
 package com.company;
 
 import com.company.Aeronaves.*;
+import com.company.Reserva.Vuelo;
+import com.company.Sistema.ControlSistema;
+import com.company.User.Usuario;
 
-import java.io.File;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -10,36 +13,36 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args)  {
-        Usuario us1 = new Usuario("Carlos","Montana",48497136,58);
+        /*Usuario us1 = new Usuario("Carlos","Montana",48497136,58);
         Usuario us2 = new Usuario("Tomas","Vermaelen",29781265,28);
         Usuario us3 = new Usuario("Isable","Alfonsino",78412364,15);
 
         Bronze latita = new Bronze("latita",8921,66f,58f,90,600,Motor.AHelice);
-        Silver bral = new Silver("bral",2254,80f,90f,120,700,Motor.AReaccion,Menu.eleccion6);
-        Gold villancio = new Gold("villancio",6666,160f,80f,130,800,Motor.APropulsion,Menu.eleccion4,"Posee wi fi");
+        Silver bral = new Silver("bral",2254,80f,90f,120,700,Motor.AReaccion);
+        Gold villancio = new Gold("villancio",6666,160f,80f,130,800,Motor.APropulsion);
 
-            LocalDateTime fecha1 = LocalDateTime.of(2020,7,22,14,10);
-            LocalDateTime fecha2 = LocalDateTime.of(2020,9,17,5,30);
-            LocalDateTime fecha3 = LocalDateTime.of(2020,11,6,8,45);
-            LocalDateTime fecha4 = LocalDateTime.of(2020,8,17,18,15);
+            LocalDate fecha1 = LocalDate.of(2020,7,22);
+        LocalDateTime fecha2 = LocalDate.of(2020,9,17);
+        LocalDatet fecha3 = LocalDate.of(2020,11,6);
+        LocalDate fecha4 = LocalDate.of(2020,8,17);
 
-        Vuelos seriales1 = new Vuelos(fecha1,30,us1,latita, Vuelos.Origen.BsAs, Vuelos.Destino.Santiago);
-        Vuelos seriales2 = new Vuelos(fecha2,80,us3,villancio, Vuelos.Origen.Cordoba, Vuelos.Destino.Montevideo);
-        Vuelos seriales3 = new Vuelos(fecha3,90,us2,bral, Vuelos.Origen.Montevideo, Vuelos.Destino.Santiago);
-        Vuelos seriales4 = new Vuelos(fecha4,146,us3,villancio, Vuelos.Origen.BsAs, Vuelos.Destino.Santiago);
+        Vuelo seriales1 = new Vuelo(fecha1,30,us1,latita, Vuelo.Origen.BsAs, Vuelo.Destino.Santiago);
+        Vuelo seriales2 = new Vuelo(fecha2,80,us3,villancio, Vuelo.Origen.Cordoba, Vuelo.Destino.Montevideo);
+        Vuelo seriales3 = new Vuelo(fecha3,90,us2,bral, Vuelo.Origen.Montevideo, Vuelo.Destino.Santiago);
+        Vuelo seriales4 = new Vuelo(fecha4,146,us3,villancio, Vuelo.Origen.BsAs, Vuelo.Destino.Santiago);
 
 
 
-        List<Vuelos> iniVue = new LinkedList<>();
+        List<Vuelo> iniVue = new LinkedList<>();
         iniVue.add(seriales1);  iniVue.add(seriales2);  iniVue.add(seriales3); iniVue.add(seriales4);
 
         List<Usuario> iniUser = new ArrayList<>();
         iniUser.add(us1);  iniUser.add(us2);  iniUser.add(us3);
 
-        List<Aviones> iniAvi = new ArrayList<>();
+        List<Avion> iniAvi = new ArrayList<>();
         iniAvi.add(latita);  iniAvi.add(bral);  iniAvi.add(villancio);
 
-        ControlSistema.inicializarSistema(iniAvi,iniUser,iniVue);
+        ControlSistema.menuInicio(iniAvi,iniUser,iniVue);
 
 
 
@@ -55,15 +58,15 @@ public class Main {
        Bronze stratoCosta = new Bronze("avionxd",150,30,500f,30,50f,Motor.APropulsion);
        System.out.println("Classe:"+stratoCosta.toString());
 
-        Vuelos directorio1 = new Vuelos(LocalDateTime.of(2020,6,22,23,15),10,230,Pepe,Piderosta, Vuelos.Origen.BsAs, Vuelos.Destino.Montevideo);
-        Vuelos directorio2 = new Vuelos(LocalDateTime.of(2020,6,21,20,15),10,230,Pipo,stratoCosta, Vuelos.Origen.BsAs, Vuelos.Destino.Cordoba);
-        List<Vuelos> flota = new LinkedList<>();
+        Vuelo directorio1 = new Vuelo(LocalDateTime.of(2020,6,22,23,15),10,230,Pepe,Piderosta, Vuelo.Origen.BsAs, Vuelo.Destino.Montevideo);
+        Vuelo directorio2 = new Vuelo(LocalDateTime.of(2020,6,21,20,15),10,230,Pipo,stratoCosta, Vuelo.Origen.BsAs, Vuelo.Destino.Cordoba);
+        List<Vuelo> flota = new LinkedList<>();
         flota.add(directorio1);
         flota.add(directorio2);*/
 
 
 
-        /*or(Aviones av : iniAvi){
+        /*or(Avion av : iniAvi){
             System.out.println(av.toString());
         }
 
@@ -81,14 +84,14 @@ public class Main {
 
 
 
-        for(Vuelos vl : iniVue){
+        for(Vuelo vl : iniVue){
             System.out.println(vl.toString());
         }*/
 
 
-        //*for(Aviones flotita : Flota){*/
+        //*for(Avion flotita : Flota){*/
 
-        /*for(Aviones flotita : Flota){
+        /*for(Avion flotita : Flota){
             if(flotita instanceof Bronze){
                 System.out.println(flotita.toString());
             }else {
@@ -128,8 +131,8 @@ public class Main {
         System.out.println(i);*/
 
         /*int acompañante = 80;
-        for (Aviones avion : iniAvi) {
-            for (Vuelos vuelo : iniVue) {
+        for (Avion avion : iniAvi) {
+            for (Vuelo vuelo : iniVue) {
                 if (vuelo.getFecha().getMonth().compareTo(seleccion.getMonth()) == 0) {
                     System.out.println("Si paso");
                     if (vuelo.getFecha().getDayOfMonth() == seleccion.getDayOfMonth()) {

@@ -1,6 +1,4 @@
-package com.company;
-
-import org.w3c.dom.ls.LSOutput;
+package com.company.Sistema;
 
 public class Inicio {
     int resp = 0;
@@ -23,8 +21,6 @@ public class Inicio {
 //                    INICIO MENU DE INFORMACION GENERAL
                 case 3:
 //                    INICIO MENU DE USUARIO
-
-
 
             }
 
